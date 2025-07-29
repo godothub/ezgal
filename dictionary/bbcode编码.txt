@@ -1,0 +1,9 @@
+>[i]bbcode编码[/i]
+
+BBCode（Bulletin Board Code）是一种轻量级标记语言, 使其在格式显示上更加美观, 以下是一些常用格式:
+[b]加粗文本[/b]
+[i]斜体文本[/i]
+[u]下划线文本[/u]
+[color=red]颜色文本[/color]
+[url=bbcode]链接文本[/url]
+

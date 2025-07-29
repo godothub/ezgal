@@ -1,0 +1,16 @@
+res://scene/font.tscn
+res://shader/噪声.gdshader
+res://shader/闪烁.gdshader
+res://theme/button/hover.tres
+res://theme/button/pressed.tres
+res://shader/侧栏.gdshader
+res://shader/底栏.gdshader
+res://scene/main.tscn
+res://scene/game.tscn
+res://scene/bottom.tscn
+res://scene/end.tscn
+res://scene/anima.tscn
+res://scene/options.tscn
+res://scene/option.tscn
+res://scene/dictionary.tscn
+res://code/Start.cs

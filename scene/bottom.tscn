@@ -1,0 +1,52 @@
+[gd_scene load_steps=6 format=3 uid="uid://ralyvqrt8kex"]
+
+[ext_resource type="Theme" uid="uid://dps3t0y1voqpb" path="res://theme/game.tres" id="1_jym3g"]
+[ext_resource type="Shader" uid="uid://cexnww82tk1rr" path="res://shader/底栏.gdshader" id="1_pnh6y"]
+[ext_resource type="Script" uid="uid://bsgd1hoi4o51c" path="res://code/Bottom.cs" id="2_vj1xx"]
+[ext_resource type="PackedScene" uid="uid://c6f15wney1tmd" path="res://scene/dictionary.tscn" id="4_gssey"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bvesk"]
+shader = ExtResource("1_pnh6y")
+
+[node name="bottom" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1536.0
+offset_bottom = 864.0
+theme = ExtResource("1_jym3g")
+script = ExtResource("2_vj1xx")
+metadata/_edit_vertical_guides_ = [1536.0, 51.0, 1476.0]
+metadata/_edit_horizontal_guides_ = [636.0, 826.0]
+
+[node name="dialog" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_bvesk")
+layout_mode = 0
+offset_top = 572.0
+offset_right = 1536.0
+offset_bottom = 864.0
+color = Color(0, 0, 0, 1)
+
+[node name="name" type="Label" parent="."]
+layout_mode = 0
+offset_top = 574.0
+offset_right = 1536.0
+offset_bottom = 633.0
+theme_override_constants/outline_size = 2
+horizontal_alignment = 1
+
+[node name="text" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 51.0
+offset_top = 636.0
+offset_right = 1476.0
+offset_bottom = 826.0
+bbcode_enabled = true
+scroll_active = false
+
+[node name="dictionary" parent="." instance=ExtResource("4_gssey")]
+visible = false
+
+[connection signal="gui_input" from="dialog" to="." method="_on_dialog_gui_input"]
+[connection signal="gui_input" from="text" to="." method="_on_text_gui_input"]
+[connection signal="meta_hover_ended" from="text" to="." method="_on_text_meta_hover_ended"]
+[connection signal="meta_hover_started" from="text" to="." method="_on_text_meta_hover_started"]

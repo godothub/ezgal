@@ -1,0 +1,64 @@
+[gd_scene load_steps=3 format=3 uid="uid://c6f15wney1tmd"]
+
+[ext_resource type="Theme" uid="uid://dps3t0y1voqpb" path="res://theme/game.tres" id="1_b5uk8"]
+[ext_resource type="Script" uid="uid://bx6sunkarf4il" path="res://code/Dictionary.cs" id="2_rb4mc"]
+
+[node name="dictionary" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1536.0
+offset_bottom = 864.0
+theme = ExtResource("1_b5uk8")
+script = ExtResource("2_rb4mc")
+metadata/_edit_horizontal_guides_ = [750.0]
+metadata/_edit_vertical_guides_ = [1486.0, 349.0]
+
+[node name="dialog" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1536.0
+offset_bottom = 864.0
+color = Color(0, 0, 0, 0.784314)
+
+[node name="text" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 349.0
+offset_top = 50.0
+offset_right = 1486.0
+offset_bottom = 750.0
+bbcode_enabled = true
+text = "
+"
+scroll_active = false
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1305.0
+offset_top = 776.0
+offset_right = 1479.0
+offset_bottom = 833.0
+text = "返回"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 1
+offset_right = 349.0
+offset_bottom = 865.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 2
+theme_override_constants/separation = 30
+
+[node name="Button" type="Button" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "文字信息"
+
+[node name="Button2" type="Button" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "bbcode编码"
+
+[connection signal="meta_clicked" from="text" to="." method="_on_text_meta_clicked"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="ScrollContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="ScrollContainer/VBoxContainer/Button2" to="." method="_on_button_pressed"]

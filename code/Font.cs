@@ -1,0 +1,81 @@
+using Godot;
+using System;
+
+public partial class Font : Control
+{
+	Tween tween;
+	RichTextLabel text;
+	Dictionary dic_node;
+
+	[Signal]
+	public delegate void StartGameEventHandler();
+
+	public override void _Ready()
+	{
+		dic_node = GetNode<Dictionary>("dictionary");
+		text = GetNode<RichTextLabel>("text");
+		_hide();
+	}
+	
+	// 隐藏对话框
+	public void _hide()
+	{
+		Hide();
+	}
+
+	// 显示对话框
+	public void _show()
+	{
+		Show();
+	}
+
+	// 设置对话框文本
+	public void set_text(string text_data, bool add_data)
+	{
+		if (add_data && text.Text.Split("\n").Length < 12)
+		{
+			if (text.Text.EndsWith(" »"))
+			{
+				text.Text = text.Text.Replace(" »", "\n");
+			}
+			text.Text += $"{text_data} »";
+		}
+		else
+		{
+			text.VisibleCharacters = 0;
+			text.Text = $"{text_data} »";
+		};
+		tween = GetTree().CreateTween();
+		tween.TweenProperty(text, "visible_characters", text.Text.Length, text_data.Length * Global.text_speed);
+	}
+
+	// 鼠标点击事件
+	public void _on_text_gui_input(InputEvent @event)
+	{
+		if (@event is InputEventMouseButton mouseEvent && mouseEvent.Pressed && mouseEvent.ButtonIndex == MouseButton.Left)
+		{
+			if (!Global.is_query)
+			{
+				EmitSignal(nameof(StartGame));
+			}
+		}
+	}
+
+	// 专业词汇文本事件
+	public void _on_text_meta_hover_ended(Variant meta)
+	{
+		Global.is_query = false;
+	}
+
+	public void _on_text_meta_hover_started(Variant meta)
+	{
+		Global.is_query = true;
+	}
+
+	// 跳转到专业词汇文本事件
+	public void _on_text_meta_clicked(Variant meta)
+	{
+		Global.load_dictionary(dic_node, meta);
+	}
+
+}

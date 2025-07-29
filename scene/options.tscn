@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://b76hqjcnewbyk"]
+
+[ext_resource type="Script" uid="uid://bkwj63bcyjfd3" path="res://code/Options.cs" id="1_jx2e8"]
+[ext_resource type="Theme" uid="uid://dps3t0y1voqpb" path="res://theme/game.tres" id="1_lcy60"]
+
+[node name="options" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1536.0
+offset_bottom = 864.0
+theme = ExtResource("1_lcy60")
+script = ExtResource("1_jx2e8")

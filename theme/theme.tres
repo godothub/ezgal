@@ -1,0 +1,10 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://bf4kjfdlknrj7"]
+
+[ext_resource type="FontFile" uid="uid://env0rb7fuiep" path="res://font/字体传奇特战体-免费商用.ttf" id="1_1a7vv"]
+
+[resource]
+Label/colors/font_color = Color(0.615615, 1.04684e-06, 6.257e-07, 1)
+Label/colors/font_outline_color = Color(1, 1, 1, 1)
+Label/constants/outline_size = 5
+Label/font_sizes/font_size = 42
+Label/fonts/font = ExtResource("1_1a7vv")

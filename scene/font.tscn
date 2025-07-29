@@ -1,0 +1,42 @@
+[gd_scene load_steps=4 format=3 uid="uid://c1iq24b0yl10y"]
+
+[ext_resource type="Theme" uid="uid://dps3t0y1voqpb" path="res://theme/game.tres" id="1_p58mm"]
+[ext_resource type="Script" uid="uid://drd7uld0nemu0" path="res://code/Font.cs" id="2_bjj6r"]
+[ext_resource type="PackedScene" uid="uid://c6f15wney1tmd" path="res://scene/dictionary.tscn" id="3_4cd57"]
+
+[node name="font" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1536.0
+offset_bottom = 864.0
+theme = ExtResource("1_p58mm")
+script = ExtResource("2_bjj6r")
+metadata/_edit_vertical_guides_ = [50.0, 1486.0]
+metadata/_edit_horizontal_guides_ = [814.0, 50.0]
+
+[node name="dialog" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 50.0
+offset_right = 1486.0
+offset_bottom = 814.0
+color = Color(0, 0, 0, 0.784314)
+
+[node name="text" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 50.0
+offset_right = 1486.0
+offset_bottom = 814.0
+bbcode_enabled = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="dictionary" parent="." instance=ExtResource("3_4cd57")]
+visible = false
+
+[connection signal="gui_input" from="text" to="." method="_on_text_gui_input"]
+[connection signal="meta_clicked" from="text" to="." method="_on_text_meta_clicked"]
+[connection signal="meta_hover_ended" from="text" to="." method="_on_text_meta_hover_ended"]
+[connection signal="meta_hover_started" from="text" to="." method="_on_text_meta_hover_started"]

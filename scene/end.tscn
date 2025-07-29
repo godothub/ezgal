@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://bcta2oa07x3a3"]
+
+[ext_resource type="Theme" uid="uid://dps3t0y1voqpb" path="res://theme/game.tres" id="1_osy0p"]
+
+[node name="game" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1536.0
+offset_bottom = -864.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_osy0p")
+
+[node name="background" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(768, 432)
+scale = Vector2(1.5, 1.5)
