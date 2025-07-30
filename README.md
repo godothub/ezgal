@@ -1,6 +1,6 @@
 <div align="center" style="display:grid;place-items:center;">
 <p>
-    <a href="https://gitee.com/cryingn/ezgal" target="_blank"><img width="180" src="./image/icon.png" alt="ezgal logo"></a>
+    <a href="https://gitee.com/cryingn/ezgal" target="_blank"><img width="180" src="./ezgal/image/icon.png" alt="ezgal logo"></a>
 <h1>ezgal</h1>
 </p>
 </div>
@@ -13,24 +13,35 @@
 
 我们在2023年11月初步实现了godot3的ezgal框架, 但是因为扩展性问题放弃继续维护, 后续对引擎进行了重写, 以下是当前新ezgal框架的特性:
 
-|描述|ezgal|说明人|
-|--|--|--|
-|godot版本|godot4(考虑持续兼容)|cryingn|
-|开发语言|Csharp|cryingn|
-|开发模式|支持2种开发模式: [深度嵌入](#深度嵌入)便于打包为一个文件, 并开发更多功能, [低代码开发](#低代码开发)也可以通过接口直接将编译文件作为开发程序进行编写|cryingn|
-|ezgal解释器|将剧本文件解释为json格式并逐段进行读取|cryingn|
-|剧本语法|为便于剧本写作与演出分离, ez_gal本身支持的语法高度划分了台词与剧本演出|cryingn|
+| 描述       | ezgal                                                                              | 说明人     |
+| -------- | ---------------------------------------------------------------------------------- | ------- |
+| godot版本  | godot4(考虑持续兼容)                                                                     | cryingn |
+| 开发语言     | Csharp                                                                             | cryingn |
+| 开发模式     | 支持2种开发模式: [深度嵌入](#深度嵌入)便于打包为一个文件, 并开发更多功能, [低代码开发](#低代码开发)也可以通过接口直接将编译文件作为开发程序进行编写 | cryingn |
+| ezgal解释器 | 将剧本文件解释为json格式并逐段进行读取                                                              | cryingn |
+| 剧本语法     | 为便于剧本写作与演出分离, ez_gal本身支持的语法高度划分了台词与剧本演出                                            | cryingn |
 
 ## 使用
 
 ### 深度嵌入
 
-(在尽快支持深度嵌入的编译问题)
-
-现在你可以直接将源码克隆到你的项目中, 并导入到godot中接着开发:
+你可以直接将源码克隆到你的项目中, 并将**ezgal**文件夹导入到godot中接着开发:
 
 ```bash
 git clone https://gitee.com/cryingn/ezgal
+cd ezgal/ezgal
+```
+
+在编写完成后想要打包为一个程序可以直接通过**make**文件夹打包进`./ezgal/code/FlowData.cs`文件夹进行编译:
+
+```bash
+dotnet run --project make
+```
+
+godot编译的程序可以不依赖文件夹运行, 如果需要恢复到文件的编辑状态, 可以使用以下指令进行恢复:
+
+```bash
+dotnet run --project make test
 ```
 
 ### 低代码开发
@@ -104,12 +115,10 @@ git clone https://gitee.com/cryingn/ezgal
 
 以下定义了大括号的参数如下:
 
-|参数|说明|例子|
-|--|--|--|
-|bg|设置背景, 背景应该在`./image/background/`文件夹中|bg:封面.png|
-|script|跳转到设定的脚本位置|script:测试3.txt|
-|jump|跳转到设定的**标记位置**|jump:循环1|
-|ef|我想用来设置特效, 但是还未实现||
-|[default]|用来设置角色立绘, [default]需要在`./image/`文件夹下具备对应名字, 里面定义的名称如下`[图片名称]-[图片高度]x[图片宽度]-[缩放比例]`|少女:normal.png-1200x650-1.1|
-
-
+| 参数        | 说明                                                                                 | 例子                         |
+| --------- | ---------------------------------------------------------------------------------- | -------------------------- |
+| bg        | 设置背景, 背景应该在`./image/background/`文件夹中                                               | bg:封面.png                  |
+| script    | 跳转到设定的脚本位置                                                                         | script:测试3.txt             |
+| jump      | 跳转到设定的**标记位置**                                                                     | jump:循环1                   |
+| ef        | 我想用来设置特效, 但是还未实现                                                                   |                            |
+| [default] | 用来设置角色立绘, [default]需要在`./image/`文件夹下具备对应名字, 里面定义的名称如下`[图片名称]-[图片高度]x[图片宽度]-[缩放比例]` | 少女:normal.png-1200x650-1.1 |
