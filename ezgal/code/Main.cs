@@ -3,40 +3,44 @@ using System;
 
 public partial class Main : Node2D
 {
-    AudioStreamPlayer sounds;
-    public override void _Ready()
-    {
-        sounds = GetNode<AudioStreamPlayer>("sounds");
-    }
+	AudioStreamPlayer sounds;
+	Sprite2D start_texture;
+	public override void _Ready()
+	{
+		start_texture = GetNode<Sprite2D>("start_texture");
+		sounds = GetNode<AudioStreamPlayer>("sounds");
 
-    void _on_box_container_mouse_entered()
-    {
-        sounds.Play();
-    }
+		Tools.set_texture(start_texture, "start_texture");
+	}
 
-    void _on_exit_mouse_entered()
-    {
-        sounds.Play();
-    }
+	void _on_box_container_mouse_entered()
+	{
+		sounds.Play();
+	}
 
-    // 开始游戏
-    void _on_game_start_pressed()
-    {
-        Global.intptr = 0;
-        GetTree().ChangeSceneToFile("res://scene/game.tscn");
-    }
+	void _on_exit_mouse_entered()
+	{
+		sounds.Play();
+	}
 
-    // 读取字典
-    void _on_dictionary_pressed()
-    {
-        /*
-        Global.intptr = 0;
-        GetTree().ChangeSceneToFile("res://scene/game.tscn");
-        */
-    }
+	// 开始游戏
+	void _on_game_start_pressed()
+	{
+		Global.intptr = 0;
+		GetTree().ChangeSceneToFile("res://scene/game.tscn");
+	}
 
-    void _on_exit_pressed()
-    {
-        GetTree().Quit();
-    }
+	// 读取字典
+	void _on_dictionary_pressed()
+	{
+		/*
+		Global.intptr = 0;
+		GetTree().ChangeSceneToFile("res://scene/game.tscn");
+		*/
+	}
+
+	void _on_exit_pressed()
+	{
+		GetTree().Quit();
+	}
 }

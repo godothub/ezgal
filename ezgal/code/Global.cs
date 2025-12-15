@@ -70,7 +70,7 @@ public partial class Global : Node
 	{
 		window_width = GetWindow().Size.X;
 		window_height = GetWindow().Size.Y;
-		datas = run_file("测试.txt");
+		datas = run_file("start.txt");
 	}
 
 	// 实在排查不明白时方便打印结构体
@@ -93,9 +93,9 @@ public partial class Global : Node
 	}
 
 	public static bool IsEmpty<T>(T structure) where T : struct
-    {
-        return EqualityComparer<T>.Default.Equals(structure, default(T));
-    }
+	{
+		return EqualityComparer<T>.Default.Equals(structure, default(T));
+	}
 
 	// 读取data并转义为json格式.
 	public static List<Flow> run_file(string path)
@@ -121,8 +121,8 @@ public partial class Global : Node
 		using (StreamReader reader = new StreamReader($"./script/{path}"))
 		{
 			new_datas = new List<Flow>();
-        	while ((line = reader.ReadLine()) != null)
-        	{
+			while ((line = reader.ReadLine()) != null)
+			{
 				line = line.Trim();
 				if  (flow_line.type != "选项")
 				{
@@ -137,7 +137,7 @@ public partial class Global : Node
 
 				// 处理大括号部分
 				if (line.StartsWith("{"))
-                {
+				{
 					while (!line.Contains("}")) {
 						line += reader.ReadLine();
 					}
@@ -159,7 +159,7 @@ public partial class Global : Node
 							return new_datas;
 						}
 					}
-                }
+				}
 				else if (flow_line.type == "选项") 
 				{
 					set_option.Add(line);
@@ -193,7 +193,7 @@ public partial class Global : Node
 		match = Regex.Match(line, @"\{([^}]+)\}");
 		if (match.Success)
 		{
-    		string set_line = match.Groups[1].Value;
+			string set_line = match.Groups[1].Value;
 			foreach (string set in set_line.Split(','))
 			{
 				string[] sets = set.Split(':');
@@ -242,7 +242,7 @@ public partial class Global : Node
 		match = Regex.Match(line, @"\{([^}]+)\}");
 		if (match.Success)
 		{
-    		string set_line = match.Groups[1].Value;
+			string set_line = match.Groups[1].Value;
 			foreach (string set in set_line.Split(','))
 			{
 				string[] sets = set.Split(':');
@@ -338,7 +338,7 @@ public partial class Global : Node
 	// 识别立绘部分字段, 生成立绘参数
 	static Anima analyze_anima(string[] sets)
 	{
-	    string[] animas = sets[1].Split("-");
+		string[] animas = sets[1].Split("-");
 		string[] anima_position = animas[1].Split("x");
 		Anima anima = new Anima{
 			type = sets[0],

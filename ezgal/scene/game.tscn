@@ -27,8 +27,10 @@ scale = Vector2(1.5, 1.5)
 layout_mode = 1
 
 [node name="font" parent="." instance=ExtResource("4_j4tt0")]
+layout_mode = 0
 
 [node name="options" parent="." instance=ExtResource("5_p1ry8")]
+layout_mode = 0
 
 [connection signal="StartGame" from="bottom" to="." method="_on_bottom_start_game"]
 [connection signal="StartGame" from="font" to="." method="_on_font_start_game"]

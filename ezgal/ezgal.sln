@@ -1,6 +1,6 @@
 ﻿Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "days3", "days3.csproj", "{5BFE7F15-2FC1-4635-A94D-990191F2D288}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ezgal", "ezgal.csproj", "{5BFE7F15-2FC1-4635-A94D-990191F2D288}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

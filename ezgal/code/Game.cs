@@ -30,25 +30,32 @@ public partial class Game : Control
 	}
 
 	// 设置背景图片
-	public static void _background(Sprite2D background, string name)
+	public static void _background(Sprite2D sprite, string path)
 	{
-		Texture2D image = (Texture2D)ResourceLoader.Load($"res://image/background/{name}");
-		background.Texture = image;
-		float width = (float)Global.window_width / (float)image.GetWidth();
-		float height = (float)Global.window_height / (float)image.GetHeight();
-		if (height > width)
+		var texture = ResourceLoader.Load($"./image/background/{path}") as Texture2D;
+		if (texture == null)
 		{
-			background.Scale = new Vector2(height, height);
+			GD.PrintErr($"`./image/background/` Failed to load `{path}`.");
 		}
 		else
 		{
-			background.Scale = new Vector2(width, width);
+			sprite.Texture = texture;
+			float width = (float)Global.window_width / (float)texture.GetWidth();
+			float height = (float)Global.window_height / (float)texture.GetHeight();
+			if (height > width)
+			{
+				sprite.Scale = new Vector2(height, height);
+			}
+			else
+			{
+				sprite.Scale = new Vector2(width, width);
+			}
 		}
 	}
 
-	public static void end()
+	public void end()
 	{
-		GD.Print("=====结束=====");
+		GetTree().ChangeSceneToFile("res://scene/end.tscn");
 	}
 
 	// 获取字段进行统一管理
@@ -76,7 +83,7 @@ public partial class Game : Control
 		if (data.type == null)
 		{
 			data.type = Global.typeptr;
-            datas[Global.intptr] = data;
+			datas[Global.intptr] = data;
 			is_first = false;
 		}
 
@@ -200,32 +207,32 @@ public partial class Game : Control
 		//DicNode.Add("Node1Key", node1);
 		Sprite2D node;
 		if (DicNode.TryGetValue("Node1Key", out node))
-        {
+		{
 			node.Texture = (Texture2D)ResourceLoader.Load($"res://image/{anima.type}/{anima.name}");
-            node.Position = anima.position;
+			node.Position = anima.position;
 			node.Scale = new Vector2(anima.scale, anima.scale);
-        }
-        else
-        {
+		}
+		else
+		{
 			PackedScene scene = (PackedScene)ResourceLoader.Load("res://scene/anima.tscn");
 			node = (Sprite2D)scene.Instantiate();
 			AddChild(node);
 			//node.Texture = (Texture2D)ResourceLoader.Load($"./image/{anima.type}/{anima.name}");
-            string imagePath = $"res://image/{anima.type}/{anima.name}";
+			string imagePath = $"res://image/{anima.type}/{anima.name}";
 			Texture2D texture = (Texture2D)ResourceLoader.Load(imagePath);
 
 			if (texture != null)
 			{
-			    node.Texture = texture;
+				node.Texture = texture;
 			}
 			else
 			{
-			    GD.PrintErr($"未找到图片: {imagePath}");
+				GD.PrintErr($"未找到图片: {imagePath}");
 			}
 			node.Position = anima.position;
 			node.Scale = new Vector2(anima.scale, anima.scale);
 			DicNode.Add(anima.type, node);
-        }
+		}
 
 	}
 

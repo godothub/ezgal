@@ -1,0 +1,145 @@
+[gd_scene load_steps=14 format=3 uid="uid://cp6isjvvcti2v"]
+
+[ext_resource type="Script" uid="uid://k3k88k0t7x1x" path="res://code/Main.cs" id="1_pum5v"]
+[ext_resource type="Script" uid="uid://c26x1ci4nqppy" path="res://code/Start.cs" id="2_ik5t3"]
+[ext_resource type="Shader" uid="uid://ba5gn7qufqwws" path="res://shader/闪烁.gdshader" id="3_lrosg"]
+[ext_resource type="Theme" uid="uid://bagh4xaumjcdf" path="res://theme/UI.tres" id="4_3mxyr"]
+[ext_resource type="Shader" uid="uid://b54gxaaosth46" path="res://shader/侧栏.gdshader" id="5_vil18"]
+[ext_resource type="Theme" uid="uid://bf4kjfdlknrj7" path="res://theme/theme.tres" id="6_1picq"]
+[ext_resource type="FontFile" uid="uid://d4gysf3i5py7b" path="res://font/ChironGoRoundTC-350N.ttf" id="7_qymjl"]
+[ext_resource type="Texture2D" uid="uid://8ox5mx3dysiv" path="res://image/particle.png" id="8_h10yh"]
+[ext_resource type="AudioStream" uid="uid://bm4afv0vqlbbu" path="res://sounds/思念,交织于世界彼端.mp3" id="9_hf7vm"]
+[ext_resource type="AudioStream" uid="uid://d3b6fp2o67rr2" path="res://sounds/button.ogg" id="10_p7wv6"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wb1fm"]
+shader = ExtResource("3_lrosg")
+shader_parameter/speed = 2.0
+shader_parameter/min_alpha = 0.3
+shader_parameter/max_alpha = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8wlu8"]
+shader = ExtResource("5_vil18")
+
+[sub_resource type="Curve" id="Curve_tgr4c"]
+_data = [Vector2(0, 0), 0.0, 0.020225, 0, 0, Vector2(0.741071, 0.997541), 0.267722, 0.267722, 0, 0, Vector2(1, 0), -7.89042, 0.0, 0, 0]
+point_count = 3
+
+[node name="main" type="Node2D"]
+script = ExtResource("1_pum5v")
+metadata/_edit_vertical_guides_ = [768.0]
+
+[node name="start_texture" type="Sprite2D" parent="."]
+centered = false
+
+[node name="start" type="Control" parent="start_texture"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("2_ik5t3")
+
+[node name="start" type="Label" parent="start_texture/start"]
+material = SubResource("ShaderMaterial_wb1fm")
+layout_mode = 0
+offset_left = 653.0
+offset_top = 728.0
+offset_right = 885.0
+offset_bottom = 762.0
+theme = ExtResource("4_3mxyr")
+theme_override_colors/font_color = Color(0.723987, 0.309227, 0.51972, 1)
+text = "-按下任意键开始游戏-"
+
+[node name="control" type="Node2D" parent="start_texture"]
+position = Vector2(-500, 0)
+
+[node name="侧栏" type="ColorRect" parent="start_texture/control"]
+material = SubResource("ShaderMaterial_8wlu8")
+offset_right = 425.0
+offset_bottom = 864.0
+color = Color(0.702664, 0.167244, 0.59989, 1)
+
+[node name="BoxContainer" type="BoxContainer" parent="start_texture/control"]
+offset_left = 125.0
+offset_top = 96.0
+offset_right = 400.0
+offset_bottom = 432.0
+theme = ExtResource("4_3mxyr")
+theme_override_constants/separation = 60
+vertical = true
+
+[node name="game_start" type="Button" parent="start_texture/control/BoxContainer"]
+layout_mode = 2
+text = "开始游戏"
+
+[node name="read_file" type="Button" parent="start_texture/control/BoxContainer"]
+layout_mode = 2
+text = "读取存档"
+
+[node name="dictionary" type="Button" parent="start_texture/control/BoxContainer"]
+layout_mode = 2
+text = "字        典"
+
+[node name="config" type="Button" parent="start_texture/control/BoxContainer"]
+layout_mode = 2
+text = "设        置"
+
+[node name="exit" type="Button" parent="start_texture/control"]
+offset_left = 125.0
+offset_top = 751.0
+offset_right = 400.0
+offset_bottom = 790.0
+theme = ExtResource("4_3mxyr")
+text = "退出游戏"
+
+[node name="title" type="Label" parent="start_texture"]
+offset_left = 167.0
+offset_top = 222.0
+offset_right = 1369.0
+offset_bottom = 367.0
+theme = ExtResource("6_1picq")
+theme_override_colors/font_color = Color(1, 0.671543, 0.97365, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("7_qymjl")
+theme_override_font_sizes/font_size = 100
+text = "EZGal"
+horizontal_alignment = 1
+
+[node name="subtitle" type="Label" parent="start_texture"]
+offset_left = 476.0
+offset_top = 344.0
+offset_right = 1058.0
+offset_bottom = 388.0
+theme = ExtResource("6_1picq")
+theme_override_colors/font_color = Color(0.517966, 0.792869, 0.340289, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("7_qymjl")
+theme_override_font_sizes/font_size = 30
+text = "文字冒险游戏模拟器"
+horizontal_alignment = 1
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+modulate = Color(1, 0.870588, 1, 1)
+position = Vector2(768, 432)
+texture = ExtResource("8_h10yh")
+emission_shape = 3
+emission_rect_extents = Vector2(768, 432)
+direction = Vector2(0, 0)
+gravity = Vector2(0, 0)
+scale_amount_min = 0.1
+scale_amount_max = 2.0
+scale_amount_curve = SubResource("Curve_tgr4c")
+
+[node name="music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_hf7vm")
+autoplay = true
+max_polyphony = 2
+
+[node name="sounds" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_p7wv6")
+max_polyphony = 2
+
+[connection signal="mouse_entered" from="start_texture/control/BoxContainer" to="." method="_on_box_container_mouse_entered"]
+[connection signal="pressed" from="start_texture/control/BoxContainer/game_start" to="." method="_on_game_start_pressed"]
+[connection signal="pressed" from="start_texture/control/BoxContainer/dictionary" to="." method="_on_dictionary_pressed"]
+[connection signal="mouse_entered" from="start_texture/control/exit" to="." method="_on_exit_mouse_entered"]
+[connection signal="pressed" from="start_texture/control/exit" to="." method="_on_exit_pressed"]
