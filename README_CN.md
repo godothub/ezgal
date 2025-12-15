@@ -5,7 +5,7 @@
 </p>
 </div>
 
-[English](./README.md)|中文
+[English](./README.md)|中文|[日本語](./README_JP.md)
 
 这是一个基于godot.mono便于开发galgame的一套框架.
 
@@ -13,15 +13,16 @@
 
 ## 描述
 
-我们在2023年11月初步实现了godot3的ezgal框架, 但是因为扩展性问题放弃继续维护, 后续对引擎进行了重写, 以下是当前新ezgal框架的特性:
+我们在2023年11月初步实现了godot3的**godot-ezgal**框架, 但是因为扩展性问题放弃继续维护, 现在对框架进行重写, 以下是当前新**ezgal**框架的特性:
 
 | 描述       | ezgal                                                                              | 说明人     |
 | -------- | ---------------------------------------------------------------------------------- | ------- |
-| godot版本  | godot4(考虑持续兼容)                                                                     | cryingn |
-| 开发语言     | Csharp                                                                             | cryingn |
+| godot版本  | Godot4(考虑持续兼容)                                                                     | cryingn |
+| 开发语言     | C#(net8.0以上版本)                                                                     | cryingn |
 | 开发模式     | 支持2种开发模式: [深度嵌入](#深度嵌入)便于打包为一个文件, 并开发更多功能, [低代码开发](#低代码开发)也可以通过接口直接将编译文件作为开发程序进行编写 | cryingn |
 | ezgal解释器 | 将剧本文件解释为json格式并逐段进行读取                                                              | cryingn |
-| 剧本语法     | 为便于剧本写作与演出分离, ez_gal本身支持的语法高度划分了台词与剧本演出                                            | cryingn |
+| 剧本语法     | 为便于剧本写作与演出分离, ezgal支持的语法高度划分了台词与剧本演出                                               | cryingn |
+| 剧本语言     | 中文(短期将支持中/英语法，未来计划支持自定义脚本语言)                                                       | cryingn |
 
 ## 使用
 
@@ -34,11 +35,7 @@ git clone https://gitee.com/cryingn/ezgal
 cd ezgal/ezgal
 ```
 
-在编写完成后想要打包为一个程序可以直接通过**make**文件夹打包进`./ezgal/code/FlowData.cs`文件夹进行编译, 因为不同系统中**dotnet**与**mono**存在差异，以下分别介绍windows与linux环境下的使用方法：
-
-#### windows
-
-打包方式如下：
+在编写完成后想要打包为一个程序可以直接通过**make**文件夹打包进`./ezgal/code/FlowData.cs`文件夹进行编译, 打包方式如下：
 
 ```bash
 dotnet run --project make
@@ -48,26 +45,6 @@ godot编译的程序可以不依赖文件夹运行, 如果需要恢复到文件�
 
 ```bash
 dotnet run --project make test
-```
-
-#### linux
-
-目前检查在archlinux中可以正常使用godot-mono运行项目，在进行深度嵌入的时候会稍微有一些变化，在此之前我们需要独立安装mono语言，打包之前需要编译make工具：
-
-```bash
-mcs make/make.cs
-```
-
-完成后可以通过以下方式进行打包：
-
-```bash
-./make/make
-```
-
-同样可以通过以下指令恢复到文件编辑状态：
-
-```bash
-./make/make test
 ```
 
 ### 低代码开发

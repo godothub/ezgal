@@ -5,7 +5,7 @@
 </p>
 </div>
 
-English|[中文](./README_CN.md)
+English|[中文](./README_CN.md)|[日本語](./README_JP.md)
 
 This is a framework based on godot.mono designed to facilitate galgame development.
 
@@ -13,121 +13,122 @@ This is a framework based on godot.mono designed to facilitate galgame developme
 
 ## Description
 
-We initially implemented the ezgal framework for Godot3 in November 2023, but discontinued maintenance due to scalability issues. The engine was subsequently rewritten. Here are the features of the new ezgal framework:
+We initially implemented the **godot-ezgal** framework for Godot3 in November 2023, but discontinued maintenance due to scalability issues. The framework was subsequently rewritten. Here are the features of the new **ezgal** framework:
 
-| Description       | ezgal                                                                              | Contributor     |
-| ----------------- | ---------------------------------------------------------------------------------- | --------------- |
-| Godot Version     | Godot4 (with ongoing compatibility considerations)                                 | cryingn         |
-| Programming Language | C#                                                                                 | cryingn         |
-| Development Modes | Supports two modes: [Deep Integration](#deep-integration) for single-file packaging with extended features, and [Low-Code Development](#low-code-development) enabling direct script editing via APIs | cryingn         |
-| ezgal Interpreter | Parses scenario files into JSON format and processes them segment by segment        | cryingn         |
-| Script Syntax     | Separates dialogue writing from scene direction for clear role differentiation     | cryingn         |
+| Description          | ezgal                                                                                                                                                                                                 | Contributor |
+| -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| Godot Version        | Godot4 (with ongoing compatibility considerations)                                                                                                                                                    | cryingn     |
+| Programming Language | C#(net8.0+)                                                                                                                                                                                           | cryingn     |
+| Development Modes    | Supports two modes: [Deep Integration](#deep-integration) for single-file packaging with extended features, and [Low-Code Development](#low-code-development) enabling direct script editing via APIs | cryingn     |
+| ezgal Interpreter    | Parses scenario files into JSON format and processes them segment by segment                                                                                                                          | cryingn     |
+| Script Syntax        | Separates dialogue writing from scene direction for clear role differentiation                                                                                                                        | cryingn     |
+| Script Language      | Chinese (Short-term support for Chinese/English grammar will be provided, with plans to support custom scripting languages in the future)                                                             | cryingn     |
 
 ## Usage
 
-### Deep Integration
+### Deep-Integration
 
 Clone the source code into your project and import the **ezgal** folder into Godot:
 
 ```bash
 git clone https://gitee.com/cryingn/ezgal
 cd ezgal/ezgal
+```
 
-To package into a single executable, compile using the make folder into ./ezgal/code/FlowData.cs. Due to dotnet/mono differences across systems, follow these guidelines:
-Windows
+To package into a single executable, compile using the make folder into `./ezgal/code/FlowData.cs`. Packaging command:
 
-Packaging command:
 
-bash
-
+```bash
 dotnet run --project make
+```
+
 
 To revert to editable mode:
 
-bash
 
+```bash
 dotnet run --project make test
+```
 
-Linux
 
-Tested working on Arch Linux with godot-mono. Requires separate mono installation. Compile make tool first:
-
-bash
-
-mcs make/make.cs
-
-Then package with:
-
-bash
-
-./make/make
-
-Revert to editable mode:
-
-bash
-
-./make/make test
-
-Low-Code Development
+### Low-Code-Development
 
 (Future mainstream development method - modify external folders for script/character art/dictionary/music editing)
 
 Post-compilation, directly edit external folder contents for resource modification.
-Syntax
+
+## Syntax
 
 For intuitive scriptwriting, dialogue and scene direction are separated. Detailed below:
 Dialogue
 
-Dialogue Box format:
+`Dialogue` Box format:
 
+```
 [对话框]
 This demonstrates dialogue box display
 Girl: This is how a character speaks in dialogue boxes
+```
 
-Fullscreen format:
 
+`Fullscreen` format:
+
+```
 [全屏]
 Fullscreen supports multi-line content
 But no character speaking
 Supports up to 12 simultaneous lines
 [全屏]
 Redefine to switch line count early
+```
 
-Options share formatting with Dialogue/Fullscreen but store choices for player selection:
 
+`Options` share formatting with `Dialogue`/`Fullscreen` but store choices for player selection:
+
+```
 [选项]
 {script:测试3.txt}Jump to Test3
 {jump:循环1}Jump to Loop1
 Continue
 [全屏]
 You'll see this after selecting fullscreen
+```
 
 BBCode supported for formatting. Define terms like:
 
+```
 [全屏]
 This is a [url=专业名词]professional term[/url]
+```
 
-Selecting terms triggers dictionary popups. Define terms in dictionary folder via 专业名词.txt.
-Scene Direction
+Selecting terms triggers dictionary popups. Define terms in dictionary folder via `专业名词.txt`.
 
-Use @ to mark jump points:
+### Scene Direction
 
+Use `@` to mark jump points:
+
+```
 @循环1
 This creates an infinite loop
 {jump:循环1}
+```
 
-All scene commands use braces:
+When jumping, it will return to the position of `@循环1`. Except for setting marked positions, all other presentation methods are uniformly managed using curly braces, as shown in the following examples:
 
-{bg:封面.png}  // Change background
-{少女:normal.png-1200x650-1.1}Girl: Hello everyone  // Set character art
-{script:测试2.txt, jump:循环1}  // Jump to specific script position
+```
+{bg:封面.png}#Switch to cover
+{少女:normal.png-1200x650-1.1}Girl: Hello everyone#Set character illustration
+{script:测试2.txt, jump:循环1}#Jump to Loop 1 in the test2 script
+```
 
-Command parameters explained:
-Parameter	Description	Example
-bg	Background images (stored in ./image/background/)	bg:封面.png
-script	Jump to specified script file	script:测试3.txt
-jump	Jump to marked position (@ symbol)	jump:循环1
-ef	Reserved for future special effects	(Not yet implemented)
-[default]	Character art configuration (files in ./image/ with naming [name]-[height]x[width]-[scale])	少女:normal.png-1200x650-1.1
+The parameters within the curly braces are defined as follows:
+
+| Parameter | Description                                                                                                                                                                                          | Example                      |
+| --------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------- |
+| bg        | Sets the background. The background image should be located in the `./image/background/` folder.                                                                                                     | bg:封面.png                    |
+| script    | Jumps to the specified script position.                                                                                                                                                              | script:测试3.txt               |
+| jump      | Jumps to the specified **marked position**.                                                                                                                                                          | jump:循环1                     |
+| ef        | Intended for setting special effects, but not yet implemented.                                                                                                                                       |                              |
+| [default] | Used to set character illustrations. [default] should have a corresponding name in the `./image/` folder, with the defined name format as `[image name]-[image height]x[image width]-[scale ratio]`. | girl:normal.png-1200x650-1.1 |
 
 

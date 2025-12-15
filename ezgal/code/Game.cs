@@ -82,7 +82,7 @@ public partial class Game : Control
 
 		// 类型判断与处理
 		switch (data.type) {
-			case "背景":
+			case "背景" or "Background":
 				// 设置背景图片
 				_background(background, data.text);
 				Global.intptr++;

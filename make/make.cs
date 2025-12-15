@@ -6,18 +6,18 @@ using System.Text.RegularExpressions;
 
 public class Make
 {       
-        // 读取文件地址
-        public static string read_file_path = "./ezgal/script";
-        // 读取字典地址
+    // 读取文件地址
+    public static string read_file_path = "./ezgal/script";
+    // 读取字典地址
 	public static string dict_file_path = "./ezgal/dictionary";
 	// 代码存储地址
 	public static string save_file_path = "./ezgal/code/FlowData.cs";
 	// 程序控制文本
-        public static List<Flow> datas;
-        // 当前文本名称
-        public static string read_file_name;
-        // 专业词汇查询
-        public static bool is_query = false;
+    public static List<Flow> datas;
+    // 当前文本名称
+    public static string read_file_name;
+    // 专业词汇查询
+    public static bool is_query = false;
 
 	static string line;
 	static Match match;
