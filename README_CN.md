@@ -44,7 +44,7 @@ cd ezgal/ezgal
 或
 
 ```bash
-git clone https://gitee.com/godothub/ezgal
+git clone https://gitee.com/godothub/ezgal.git
 cd ezgal/ezgal
 ```
 
