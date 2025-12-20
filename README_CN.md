@@ -75,5 +75,5 @@ dotnet run --project make edit zh
 * ezgal项目基于[Godot Engine](https://godotengine.org/)引擎.
 * 感谢[100font](https://www.100font.com/)提供字体资源.
 * godot-ezgal、ezgal项目最初由VYCMa开源中国社区监督.
-* ezgal项目当前由[Godot Hub社区](https://godothub.cn/)维护.
+* ezgal项目当前由[Godot Hub社区](https://godothub.com/)维护.
 * 致谢参与贡献与设计的所有个人

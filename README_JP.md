@@ -140,5 +140,5 @@ dotnet run --project make edit jp
 - ezgalプロジェクトは[Godot Engine](https://godotengine.org/)エンジンに基づいています。
 - [100font](https://www.100font.com/)が提供するフォント資源に感謝します。
 - godot-ezgal、ezgalプロジェクトは当初、VYCMaのオープンソース中国コミュニティによって監督されていました。
-- ezgalプロジェクトは現在、[Godot Hubコミュニティ](https://godothub.cn/)によってメンテナンスされています。
+- ezgalプロジェクトは現在、[Godot Hubコミュニティ](https://godothub.com/)によってメンテナンスされています。
 - 貢献と設計に参加したすべての個人に感謝します。

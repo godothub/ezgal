@@ -144,5 +144,5 @@ The parameters within the curly braces are defined as follows:
 - The ezgal project is based on the [Godot Engine](https://godotengine.org/).
 - Thanks to [100font](https://www.100font.com/) for providing font resources.
 - The godot-ezgal and ezgal projects were initially supervised by the VYCMa Open Source China Community.
-- The ezgal project is currently maintained by the [Godot Hub Community](https://godothub.cn/).
+- The ezgal project is currently maintained by the [Godot Hub Community](https://godothub.com/).
 - Thanks to all individuals who have contributed and designed.
