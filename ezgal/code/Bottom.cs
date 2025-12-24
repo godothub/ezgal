@@ -43,16 +43,9 @@ public partial class Bottom : Control
 	public void set_text(string text_data)
 	{ 
 		text.Text = $"{text_data} »";
-		if (text_data.Contains("[url="))
-		{
-			text.VisibleRatio = 1.0f;
-		}
-		else
-		{
-			text.VisibleRatio = 0.0f;
-			tween = GetTree().CreateTween();
-			tween.TweenProperty(text, "visible_ratio", 1.0f, text_data.Length * Global.text_speed);
-		}
+		text.VisibleRatio = 0.0f;
+		tween = GetTree().CreateTween();
+		tween.TweenProperty(text, "visible_ratio", 1.0f, text_data.Length * Global.text_speed);
 	}
 
 	// 添加角色名

@@ -162,7 +162,6 @@ public partial class Game : Control
 			file_name = Global.read_file_name;
 		}
 
-		GD.Print(file_name);
 		datas = datas.GetRange(0, Global.intptr);
 		List<Global.Flow> new_datas = Global.run_file(file_name);
 
@@ -179,17 +178,14 @@ public partial class Game : Control
 				if (type_list.Contains(new_datas[i].type))
 				{
 					data_type = new_datas[i].type;
-					GD.Print($"data_type is {data_type}");
 				}
 				int new_datas_count = new_datas.Count;
 				if (new_datas[i].jptr == jump_ptr)
 				{
 					new_datas = new_datas.GetRange(i, new_datas_count - i);
 					Global.Flow new_data = new_datas[0];
-					GD.Print($"data_type is {data_type}");
 					new_data.type = data_type;
 					new_datas[0] = new_data;
-					Global.print(new_datas[0]);
 					datas.AddRange(new_datas);
 					break;
 				}

@@ -48,6 +48,11 @@ git clone https://gitee.com/godothub/ezgal.git
 cd ezgal/ezgal
 ```
 
+首次开始编写脚本前应该将状态与编译语言进行初始化:
+```bash
+dotnet run --project make edit zh
+```
+
 在编写完成后想要打包为一个程序可以直接通过**make**文件夹打包进`./ezgal/code/FlowData.cs`文件夹进行编译, 打包方式如下：
 
 ```bash

@@ -14,6 +14,7 @@ public partial class Font : Control
 	{
 		dic_node = GetNode<Dictionary>("dictionary");
 		text = GetNode<RichTextLabel>("text");
+		tween = GetTree().CreateTween();
 		_hide();
 	}
 	
@@ -32,6 +33,13 @@ public partial class Font : Control
 	// 设置对话框文本
 	public void set_text(string text_data, bool add_data)
 	{
+		if ( tween.IsRunning() )
+		{
+			GD.Print("kill");
+			tween.Kill();
+			text.VisibleCharacters = text.Text.Length;
+
+		}
 		if (add_data && text.Text.Split("\n").Length < 12)
 		{
 			if (text.Text.EndsWith(" »"))
