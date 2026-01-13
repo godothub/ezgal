@@ -10,7 +10,7 @@ export default defineConfig({
   head: [
     [
       'link',
-      { rel: 'icon', href: '/icon.png' }
+      { rel: 'icon', href: 'https://godothub.com/oss/ezgal/icon.png' }
     ]
   ],
   themeConfig: {
@@ -84,10 +84,6 @@ export default defineConfig({
           }
         ],
         sidebar: [
-          {
-            text: '目录',
-            link: '/'
-          },
           { text: '定义', link: '/definition' },
           { text: '低代码开发说明', link: '/low-code-development-instructions' },
           { text: '文件结构说明', link: '/file-structure-description' },
@@ -119,10 +115,6 @@ export default defineConfig({
           }
         ],
         sidebar: [
-                    {
-            text: 'Content',
-            link: '/'
-          },
           { text: 'Definition', link: '/definition' },
           { text: 'Low-Code Development Instructions', link: '/en/low-code-development-instructions' },
           { text: 'File Structure Description', link: '/en/file-structure-description' },
