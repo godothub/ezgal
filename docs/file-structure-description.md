@@ -108,16 +108,17 @@
 `script`文件夹存储系统配置脚本与剧本演出脚本
 #### init(todo: 未完全实现)
 
-`.init.json`文件用于定义系统配置脚本，包含`start`用于设置开始场景（即`scene/main.tscn`），`end`用于设置结束场景（即`scene/end.tscn`）, 详细定义规则可参考[.init.json](../../ezgal/script/.init.json)文件
+`.init.json`文件用于定义系统配置脚本，包含`start`用于设置开始场景（即`scene/main.tscn`），`end`用于设置结束场景（即`scene/end.tscn`）, 详细定义规则可参考[.init.json](../ezgal/script/.init.json)文件
 #### start
 
-`start.txt`文件为默认定义的剧本入口位置，进入游戏后(即进入`./scene/game.tscn`场景)默认先加载`start.txt`剧本演出脚本，具体编写语法可参考[语法设计](./语法设计.md)，通过设置系统配置脚本可以修改入口剧本名称. 
+`start.txt`文件为默认定义的剧本入口位置，进入游戏后(即进入`./scene/game.tscn`场景)默认先加载`start.txt`剧本演出脚本，具体编写语法可参考[语法设计](/syntax-design)，通过设置系统配置脚本可以修改入口剧本名称. 
+
 #### 更多剧本
 
-我们可以在`script`文件夹中添加更多剧本，在剧情演绎过程中可以通过[演出](./语法设计.md#演出)跳转到不同的剧本.
+我们可以在`script`文件夹中添加更多剧本，在剧情演绎过程中可以通过[演出](/syntax-design.md#演出/)跳转到不同的剧本.
 ### dictionary
 
-`dictionary`文件夹用于存放专业名词，玩家在剧本进行到对应的[专业名词](./语法设计.md#专业名词)时或在界面、设置中可以导入`./scene/dictionary.tscn`场景查询专业名词的说明，`dictionary`文件夹中一个文件对应一个专业名词, 以**文字信息**为例：
+`dictionary`文件夹用于存放专业名词，玩家在剧本进行到对应的[专业名词](/syntax-design.md#专业名词/)时或在界面、设置中可以导入`./scene/dictionary.tscn`场景查询专业名词的说明，`dictionary`文件夹中一个文件对应一个专业名词, 以**文字信息**为例：
 文件命名规则为`文字信息.txt`，文件支持bbcode格式，可以在`dictionary.tscn`场景中继续跳转：
 ```
 [i]文字信息[/i]
@@ -134,7 +135,7 @@
 
 #### 立绘
 
-我们默认不同角色存在多个角色立绘，每个角色应该在`image`文件夹内定义新的文件夹，存储对应的立绘，调用方式参考[演出参数](./语法设计.md#演出参数)
+我们默认不同角色存在多个角色立绘，每个角色应该在`image`文件夹内定义新的文件夹，存储对应的立绘，调用方式参考[演出参数](/syntax-design#演出参数/)
 
 ### sounds
 
@@ -146,7 +147,7 @@
 
 ### font
 
-用于存放字体，ezgal默认采用昭源环方（Chiron GoRound TC）字体. 字体以[SIL Open Font License 1.1](https://openfontlicense.org/)（SIL 开源字型授权版本1.1，简称SIL OFL 或OFL）授权协议发布：
+用于存放字体，ezgal默认采用昭源环方（Chiron GoRound TC）字体. 字体以[SIL Open Font License 1.1](https://openfontlicense.org)（SIL 开源字型授权版本1.1，简称SIL OFL 或OFL）授权协议发布：
 
 ✔ 这款字体无论是个人还是企业都可以自由免费商用，无需知会或者标明原作者。
 
