@@ -147,7 +147,7 @@ public partial class Tools : Node
 
 public partial class ToolsInit : Node
 {
-	public static string FindInitJsonType(string scene, string node, string key)
+	public static string FindInitString(string scene, string node, string key)
 	{
 		string jsonString = FlowData.jsonString;
 		if (!FlowData.IsBuild)
@@ -162,7 +162,64 @@ public partial class ToolsInit : Node
 			return "";
 		if (!nodeElement.TryGetProperty(key, out JsonElement keyElement))
 			return "";
-		return $"{keyElement}";
+		return keyElement.GetString();
+	}
+
+	public static int FindInitInt(string scene, string node, string key)
+	{
+		string jsonString = FlowData.jsonString;
+		if (!FlowData.IsBuild)
+		{
+			jsonString = System.IO.File.ReadAllText("./script/.init.json");
+		}
+		using JsonDocument doc = JsonDocument.Parse(jsonString);
+		JsonElement rootElement = doc.RootElement;
+		if (!rootElement.TryGetProperty(scene, out JsonElement sceneElement))
+			return 0;
+		if (!sceneElement.TryGetProperty(node, out JsonElement nodeElement))
+			return 0;
+		if (!nodeElement.TryGetProperty(key, out JsonElement keyElement))
+			return 0;
+		return keyElement.GetInt32();
+	}
+
+	public static float FindInitFloat(string scene, string node, string key)
+	{
+		string jsonString = FlowData.jsonString;
+		if (!FlowData.IsBuild)
+		{
+			jsonString = System.IO.File.ReadAllText("./script/.init.json");
+		}
+		using JsonDocument doc = JsonDocument.Parse(jsonString);
+		JsonElement rootElement = doc.RootElement;
+		if (!rootElement.TryGetProperty(scene, out JsonElement sceneElement))
+			return 0.0f;
+		if (!sceneElement.TryGetProperty(node, out JsonElement nodeElement))
+			return 0.0f;
+		if (!nodeElement.TryGetProperty(key, out JsonElement keyElement))
+			return 0.0f;
+		return keyElement.GetSingle();
+	}
+
+	public static Color FindInitColor(string scene, string node, string key)
+	{
+		string keyElement = FindInitString(scene, node, key);
+		return StringToColor(keyElement);
+	}
+	private static Color StringToColor(string rgbaString)
+	{
+		Regex regex = new Regex(@"rgba\(([^,]+),\s*([^,]+),\s*([^,]+),\s*([^)]+)\)");
+		Match match = regex.Match(rgbaString);
+		if (!match.Success)
+		{
+			GD.PrintErr("Invalid rgba string format");
+			return Colors.White; // 默认返回白色
+		}
+		float r = float.Parse(match.Groups[1].Value.Trim());
+		float g = float.Parse(match.Groups[2].Value.Trim());
+		float b = float.Parse(match.Groups[3].Value.Trim());
+		float a = float.Parse(match.Groups[4].Value.Trim());
+		return new Color(r, g, b, a);
 	}
 }
 

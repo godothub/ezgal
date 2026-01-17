@@ -82,7 +82,7 @@ public partial class Global : Node
 		// window size是否会改变
 		window_width = GetWindow().Size.X;
 		window_height = GetWindow().Size.Y;
-		string startPath = ToolsInit.FindInitJsonType("game", "script", "start");
+		string startPath = ToolsInit.FindInitString("game", "script", "start");
 
 		datas = RunFile(startPath);
 	}
@@ -91,7 +91,6 @@ public partial class Global : Node
 	 * This is for code inspection. Don't modify it, damn it!
 	 * 这是检查代码用的，别改了，敲你喵！
 	 * これはコードチェック用なんだから、変更しないでくれよ、クソが！
-	 */
 	 public static void print(Flow new_data)
 	 {
 	 GD.Print($"Round ptr:{intptr}");
@@ -111,6 +110,7 @@ public partial class Global : Node
 	 GD.Print($"state	:{new_data.anima.state}");
 	 GD.Print("----------------------");
 	 }
+	 */
 
 	public static bool IsEmpty<T>(T structure) where T : struct
 	{
@@ -315,7 +315,6 @@ public partial class Global : Node
                                                 break;
                                         // 背景设置
                                         case "bg":
-                                                Console.WriteLine("bg");
                                                 if (next_data) {
                                                         data_flow.type = FlowData.direction;
                                                         data_flow.background = sets[1];

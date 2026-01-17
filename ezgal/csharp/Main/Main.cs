@@ -29,13 +29,24 @@ public partial class Main : Node2D
 
 	private void SetJson()
 	{
-		string titleText = ToolsInit.FindInitJsonType("start", "title", "text");
+		string titleText = ToolsInit.FindInitString("start", "title", "text");
+		Color titleColor = ToolsInit.FindInitColor("start", "title", "font_color");
+		Color titleOutlineColor = ToolsInit.FindInitColor("start", "title", "font_outline_color");
+		int titleSize = ToolsInit.FindInitInt("start", "title", "font_size");
 		_titleNode.Text = titleText;
-		string subTitleText = ToolsInit.FindInitJsonType("start", "subtitle", "text");
+		_titleNode.AddThemeColorOverride("font_color", titleColor);
+		_titleNode.AddThemeColorOverride("font_outline_color", titleOutlineColor);
+		_titleNode.AddThemeFontSizeOverride("font_size", titleSize);
+		string subTitleText = ToolsInit.FindInitString("start", "subtitle", "text");
+		Color subTitleColor = ToolsInit.FindInitColor("start", "subtitle", "font_color");
+		Color subTitleOutlineColor = ToolsInit.FindInitColor("start", "subtitle", "font_outline_color");
+		int subTitleSize = ToolsInit.FindInitInt("start", "subtitle", "font_size");
 		_subTitleNode.Text = subTitleText;
-
-		string musicPath = ToolsInit.FindInitJsonType("start", "music", "stream");
-		float musicVolumeDb = float.Parse(ToolsInit.FindInitJsonType("start", "music", "volume_db"));
+		_subTitleNode.AddThemeColorOverride("font_color", subTitleColor);
+		_subTitleNode.AddThemeColorOverride("font_outline_color", subTitleOutlineColor);
+		_subTitleNode.AddThemeFontSizeOverride("font_size", subTitleSize);
+		string musicPath = ToolsInit.FindInitString("start", "music", "stream");
+		float musicVolumeDb = ToolsInit.FindInitFloat("start", "music", "volume_db");
 		_musicNode.Stream = Tools.LoadAudio($"./sounds/{musicPath}");
 		_musicNode.VolumeDb = musicVolumeDb;
 		_musicNode.Play();

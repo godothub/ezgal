@@ -89,7 +89,6 @@ theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 5
 theme_override_fonts/font = ExtResource("7_qymjl")
 theme_override_font_sizes/font_size = 100
-text = "EZGal"
 horizontal_alignment = 1
 
 [node name="Subtitle" type="Label" parent="MainControl/Title"]
@@ -103,7 +102,6 @@ theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 5
 theme_override_fonts/font = ExtResource("7_qymjl")
 theme_override_font_sizes/font_size = 30
-text = "文字冒险游戏模拟器"
 horizontal_alignment = 1
 
 [node name="Menu" type="ColorRect" parent="."]
@@ -128,14 +126,17 @@ layout_mode = 2
 text = "开始游戏"
 
 [node name="LoadGame" type="Button" parent="Menu/BoxContainer"]
+visible = false
 layout_mode = 2
 text = "读取存档"
 
 [node name="Technical" type="Button" parent="Menu/BoxContainer"]
+visible = false
 layout_mode = 2
 text = "字	         典"
 
 [node name="Gallery" type="Button" parent="Menu/BoxContainer"]
+visible = false
 layout_mode = 2
 text = "图         集"
 
