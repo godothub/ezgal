@@ -48,7 +48,7 @@ jobs:
 
       - name: Install V language
         run: |
-          git clone https://github.com/vlang/v
+          git clone --depth=1 https://github.com/vlang/v
           cd v
           make
           sudo ./v symlink
