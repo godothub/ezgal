@@ -4,12 +4,15 @@ using System.Collections.Generic;
 
 public partial class History : RichTextLabel
 {
+	[Export]
+	private Keys _keysScene;
 	private int left = 30;
 	private int top = 60;
 	private string type;
 
 	public override void _Ready()
 	{
+		MetaClicked += OnMetaClicked;
 		Position = new Vector2(
 				left, top
 				);
@@ -17,6 +20,11 @@ public partial class History : RichTextLabel
 				Global.window_width - (2 * left),
 				Global.window_height - (2 * top)
 				);
+	}
+
+	public void OnMetaClicked(Variant meta)
+	{
+		Global.LoadTechnical(_keysScene, meta);
 	}
 
 	// load Datas's text.

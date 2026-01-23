@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cgfdxqvkfwxnw"]
+[gd_scene load_steps=8 format=3 uid="uid://cgfdxqvkfwxnw"]
 
 [ext_resource type="Theme" uid="uid://dps3t0y1voqpb" path="res://theme/game.tres" id="1_mttsm"]
 [ext_resource type="Script" uid="uid://cjt4ij7jpbx7m" path="res://csharp/Game/Game.cs" id="2_nu56y"]
@@ -6,8 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://c1iq24b0yl10y" path="res://scene/Game/font.tscn" id="4_3vl1c"]
 [ext_resource type="PackedScene" uid="uid://b76hqjcnewbyk" path="res://scene/Options/options.tscn" id="5_n2gev"]
 [ext_resource type="PackedScene" uid="uid://ds7gwwx2cobnd" path="res://scene/Keys/keys.tscn" id="6_npse7"]
+[ext_resource type="AudioStream" uid="uid://cbwlkx2rrjw82" path="res://sounds/typing.ogg" id="7_nu56y"]
 
-[node name="Game" type="Control" node_paths=PackedStringArray("_backgroundNode", "BottomScene", "FontScene", "OptionsScene")]
+[node name="Game" type="Control" node_paths=PackedStringArray("_backgroundNode", "BottomScene", "FontScene", "OptionsScene", "_musicNode", "_dubbingNode")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -20,18 +21,22 @@ _backgroundNode = NodePath("Background")
 BottomScene = NodePath("Bottom")
 FontScene = NodePath("Font")
 OptionsScene = NodePath("Options")
-EndScenePath = "res://scene/end.tscn"
+_musicNode = NodePath("Music")
+_dubbingNode = NodePath("Dubbing")
+EndScenePath = "res://scene/Game/end.tscn"
 
 [node name="Background" type="Sprite2D" parent="."]
 z_index = -2
 centered = false
 
-[node name="Bottom" parent="." node_paths=PackedStringArray("_keysScene") instance=ExtResource("3_8gcf3")]
+[node name="Bottom" parent="." node_paths=PackedStringArray("_soundsNode", "_keysScene") instance=ExtResource("3_8gcf3")]
 layout_mode = 1
+_soundsNode = NodePath("../Sounds")
 _keysScene = NodePath("../Keys")
 
-[node name="Font" parent="." node_paths=PackedStringArray("_keysScene") instance=ExtResource("4_3vl1c")]
+[node name="Font" parent="." node_paths=PackedStringArray("_soundsNode", "_keysScene") instance=ExtResource("4_3vl1c")]
 layout_mode = 0
+_soundsNode = NodePath("../Sounds")
 _keysScene = NodePath("../Keys")
 
 [node name="Options" parent="." instance=ExtResource("5_n2gev")]
@@ -40,6 +45,19 @@ layout_mode = 0
 [node name="Keys" parent="." node_paths=PackedStringArray("_gameScene") instance=ExtResource("6_npse7")]
 layout_mode = 1
 _gameScene = NodePath("..")
+
+[node name="Dubbing" type="AudioStreamPlayer" parent="."]
+autoplay = true
+max_polyphony = 2
+
+[node name="Sounds" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_nu56y")
+volume_db = 11.45
+max_polyphony = 2
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+autoplay = true
+max_polyphony = 2
 
 [connection signal="StartGame" from="Bottom" to="." method="_on_bottom_start_game"]
 [connection signal="StartGame" from="Font" to="." method="_on_font_start_game"]

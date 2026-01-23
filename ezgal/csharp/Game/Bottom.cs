@@ -11,7 +11,9 @@ public partial class Bottom : Control
 	[Export]
 	Label name { get; set; }
 	[Export]
-	private Control _keysScene { get; set; }
+	private AudioStreamPlayer _soundsNode;
+	[Export]
+	private Keys _keysScene;
 
 	[Signal]
 	public delegate void StartGameEventHandler();
@@ -45,6 +47,8 @@ public partial class Bottom : Control
 		text.Text = $"{text_data} »";
 		text.VisibleRatio = 0.0f;
 		tween = GetTree().CreateTween();
+		tween.Finished += OnTweenFinished;
+		_soundsNode.Play();
 		tween.TweenProperty(text, "visible_ratio", 1.0f, Tools.RemoveBBCode(text_data).Length * Global.text_speed);
 	}
 
@@ -86,7 +90,11 @@ public partial class Bottom : Control
 	// 跳转到专业词汇文本事件
 	public void _on_text_meta_clicked(Variant meta)
 	{
-		Keys keysScene = _keysScene as Keys;
-		Global.LoadTechnical(keysScene, meta);
+		Global.LoadTechnical(_keysScene, meta);
+	}
+
+	public void OnTweenFinished()
+	{
+		_soundsNode.Stop();
 	}
 }

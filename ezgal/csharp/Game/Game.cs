@@ -4,18 +4,18 @@ using System.Collections.Generic;
 
 public partial class Game : Control
 {
-	// 背景图片
 	[Export]
 	private Sprite2D _backgroundNode;
-	// 对话框文本
 	[Export]
 	private Bottom BottomScene;
-	// 全屏对话文本
 	[Export]
 	private Font FontScene;
-	// 设置选项节点
 	[Export]
 	private Options OptionsScene;
+	[Export]
+	private AudioStreamPlayer _musicNode;
+	[Export]
+	private AudioStreamPlayer _dubbingNode;
 	[Export(PropertyHint.FilePath)]
 	public string EndScenePath { get; set; }
 	// 剧情数据
@@ -34,10 +34,14 @@ public partial class Game : Control
 	// 设置背景图片
 	private void SetBackground(string path)
 	{
-		var texture = ResourceLoader.Load($"./image/background/{path}") as Texture2D;
+		if (path == null) {
+			return;
+		}
+		var texture = Tools.LoadImage($"./image/background/{path}") as Texture2D;
 		if (texture == null)
 		{
 			GD.PrintErr($"`./image/background/` Failed to load `{path}`.");
+			return;
 		}
 		else
 		{
@@ -95,11 +99,11 @@ public partial class Game : Control
 		// 类型判断与处理
 		switch (data.type)
 		{
-			case FlowData.background:
+			case FlowData.direction:
 				// 设置背景图片
-				SetBackground(data.text);
+				SetBackground(data.background);
 				Global.intptr++;
-				Run();
+				//Run();
 				break;
 			case FlowData.dialogue:
 				// 对话框更新状态
@@ -118,6 +122,7 @@ public partial class Game : Control
 				{
 					create_anima(data.anima);
 				}
+				SetBackground(data.background);
 				Global.intptr++;
 				break;
 			case FlowData.fullscreen:
@@ -137,6 +142,7 @@ public partial class Game : Control
 				{
 					create_anima(data.anima);
 				}
+				SetBackground(data.background);
 				Global.intptr++;
 				break;
 			case FlowData.options:
@@ -156,18 +162,19 @@ public partial class Game : Control
 		// 跳转
 		if (data.script != null || data.jump != null)
 		{
-			new_script(data.script, data.jump, data.type);
+			new_script(data.script, data.jump);
 		}
 	}
 
 	// 跳转到新的脚本
-	public void new_script(string file_name, string jump_ptr, string type)
+	public void new_script(string file_name, string jump_ptr)
 	{
+		// no file_name.
 		if (file_name == null)
 		{
 			file_name = Global.read_file_name;
 		}
-
+		
 		Datas = Datas.GetRange(0, Global.intptr);
 		List<Global.Flow> new_datas = Global.RunFile(file_name);
 
@@ -197,20 +204,16 @@ public partial class Game : Control
 				}
 			}
 		}
-		if (type == FlowData.option)
-		{
-			Run();
-		}
+		Run();
 	}
 
 	// 创建立绘节点
 	public void create_anima(Global.Anima anima)
 	{
-		//DicNode.Add("Node1Key", node1);
 		Sprite2D node;
-		if (_dicNode.TryGetValue("Node1Key", out node))
+		if (_dicNode.TryGetValue(anima.type, out node))
 		{
-			node.Texture = (Texture2D)ResourceLoader.Load($"./image/{anima.type}/{anima.name}");
+			node.Texture = (Texture2D)Tools.LoadImage($"./image/{anima.type}/{anima.name}");
 			node.Position = anima.position;
 			node.Scale = new Vector2(anima.scale, anima.scale);
 		}
@@ -219,9 +222,9 @@ public partial class Game : Control
 			PackedScene scene = (PackedScene)ResourceLoader.Load("./scene/Game/anima.tscn");
 			node = (Sprite2D)scene.Instantiate();
 			AddChild(node);
-			//node.Texture = (Texture2D)ResourceLoader.Load($"./image/{anima.type}/{anima.name}");
+			//node.Texture = (Texture2D)Tools.LoadImage($"./image/{anima.type}/{anima.name}");
 			string imagePath = $"./image/{anima.type}/{anima.name}";
-			Texture2D texture = (Texture2D)ResourceLoader.Load(imagePath);
+			Texture2D texture = (Texture2D)Tools.LoadImage(imagePath);
 
 			if (texture != null)
 			{

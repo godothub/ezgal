@@ -7,7 +7,9 @@ public partial class Font : Control
 	[Export]
 	RichTextLabel TextNode { get; set; }
 	[Export]
-	private Control _keysScene { get; set; }
+	private AudioStreamPlayer _soundsNode;
+	[Export]
+	private Keys _keysScene;
 
 	[Signal]
 	public delegate void StartGameEventHandler();
@@ -37,6 +39,7 @@ public partial class Font : Control
 		if ( tween.IsRunning() )
 		{
 			tween.Kill();
+			_soundsNode.Stop();
 			TextNode.VisibleCharacters = TextNode.Text.Length;
 
 		}
@@ -53,7 +56,10 @@ public partial class Font : Control
 			TextNode.VisibleCharacters = 0;
 			TextNode.Text = $"{text_data} »";
 		};
+
 		tween = GetTree().CreateTween();
+		_soundsNode.Play();
+		tween.Finished += OnTweenFinished;
 		tween.TweenProperty(
 				TextNode,
 				"visible_characters", 
@@ -85,8 +91,13 @@ public partial class Font : Control
 	// 跳转到专业词汇文本事件
 	public void _on_text_meta_clicked(Variant meta)
 	{
-		Keys keysScene = _keysScene as Keys;
-		Global.LoadTechnical(keysScene, meta);
+		Global.LoadTechnical(_keysScene, meta);
+	}
+
+	// audio: tween finish
+	public void OnTweenFinished()
+	{
+		_soundsNode.Stop();
 	}
 
 }

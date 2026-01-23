@@ -5,7 +5,6 @@ make/Make.exe
 make/Make
 make/make.sln
 bin/
-test/
 
 # Godot 4+ specific ignores
 ezgal/.godot/

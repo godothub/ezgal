@@ -1,0 +1,3 @@
+>[i]文字信息[/i]
+
+文字信息统一采用富文本进行编辑, 支持[color=blue][url=bbcode编码]bbcode编码[/url][/color], 可以通过设置url指向dictionary文件(指向链接不需要包含.txt的后缀)达成查询字典信息.

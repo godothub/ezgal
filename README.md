@@ -3,39 +3,47 @@
             <a href="https://gitee.com/cryingn/ezgal" target="_blank"><img width="180" src="./ezgal/image/icon.png" alt="ezgal logo"></a>
         <h1>ezgal</h1>
         </p>
-        <img src="https://gitcode.com/godothub/ezgal/star/badge.svg?style=flat-square">
+    <div style="display: flex; gap: 10px;">
+		<img src="https://gitcode.com/godothub/ezgal/star/badge.svg?style=flat-square">
+		<img src="https://img.shields.io/github/stars/Godothub/ezgal.svg">
+	</div>
 </div>
 
-English|[中文](./README_CN.md)|[日本語](./README_JP.md)
+English|[中文](./README.ZH.md)|[日本語](./README.JP.md)
 
-This is a framework based on godot.mono designed to facilitate galgame development.
+A Rapid Development Framework for Text Adventure Games Based on Godot.Mono
 
-![](./image/image.png)
+![](./docs/public/example.png)
 
 ## Description
 
-We initially implemented the **godot-ezgal** framework for Godot3 in November 2023, but discontinued maintenance due to scalability issues. The framework was subsequently rewritten. Here are the features of the new **ezgal** framework:
+In November 2023, we initially implemented the **godot-ezgal** framework for Godot3 but abandoned further maintenance due to scalability issues. Now, we are rewriting the framework, and here are the features of the new **ezgal** framework:
 
-| Description          | ezgal                                                                                                                                                                                                 | Contributor |
-| -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
-| Godot Version        | Godot4 (with ongoing compatibility considerations)                                                                                                                                                    | cryingn     |
-| Programming Language | C#(net8.0+)                                                                                                                                                                                           | cryingn     |
-| Development Modes    | Supports two modes: [Deep Integration](#deep-integration) for single-file packaging with extended features, and [Low-Code Development](#low-code-development) enabling direct script editing via APIs | cryingn     |
-| ezgal Interpreter    | Parses scenario files into JSON format and processes them segment by segment                                                                                                                          | cryingn     |
-| Script Syntax        | Separates dialogue writing from scene direction for clear role differentiation                                                                                                                        | cryingn     |
-| Script Language      | Chinese/English/Japanese (supports customizing languages in `./make/FlowData.cs`)                                                                                                                     | cryingn     |
-| Wiki Language        | Chinese/English/Japanese                                                                                                                                                                              | cryingn     |
+| Description          | ezgal                                                                                                                                                                                                                                                                                      | Contributor |
+| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------- |
+| Godot Version        | Godot4 (considering ongoing compatibility)                                                                                                                                                                                                                                                 | cryingn     |
+| Development Language | C# (version net8.0 and above)                                                                                                                                                                                                                                                              | cryingn     |
+| Development Modes    | 1. **[Deep ntegration](#deep-integration)**: Use the framework for secondary development to achieve more functionalities.<br>2. **[Low-Code Development](#low-code-development)**: No need to configure the environment; download the compiled files and use them as development programs. | cryingn     |
+| ezgal Interpreter    | Interpret script files into JSON format and read them segment by segment.                                                                                                                                                                                                                  | cryingn     |
+| Script Syntax        | To facilitate the separation of script writing and performance, ezgal supports syntax that highly divides dialogue from script performance.                                                                                                                                                | cryingn     |
+| Script Languages     | Chinese/English/Japanese (support customization in `./make/FlowData.cs`)                                                                                                                                                                                                                   | cryingn     |
+| Wiki Languages       | Chinese/English/Japanese                                                                                                                                                                                                                                                                   | cryingn     |
 
 ## Usage
 
-### Deep-Integration
+### Instructions
 
-Clone the source code into your project and import the **ezgal** folder into Godot:
+We have compiled documentation to facilitate understanding of the project and its development. You can find the corresponding instructional documents in the wiki, typically starting from the [Table of Contents](./wiki/en/Contents.md).
+
+### deep-integration
+
+You can directly clone the source code into your project and import the **ezgal** folder into Godot for further development:
 
 ```bash
-git clone https://atomgit.com/godothub/ezgal
+git clone https://atomgit.com/godothub/ezgal.git
 cd ezgal/ezgal
 ```
+
 or
 
 ```bash
@@ -43,106 +51,39 @@ git clone https://gitee.com/godothub/ezgal.git
 cd ezgal/ezgal
 ```
 
-To package into a single executable, compile using the make folder into `./ezgal/code/FlowData.cs`. Packaging command:
-
-
-```bash
-dotnet run --project make build en
-```
-
-
-To revert to editable mode:
-
+Before starting to write scripts for the first time, you need to initialize the state and compile the language:
 
 ```bash
 dotnet run --project make edit en
 ```
 
+After completing the script writing, if you want to package it into a program, you can directly compile it into the `./ezgal/code/FlowData.cs` folder through the **make** folder. The packaging method is as follows:
+
+```bash
+dotnet run --project make build en
+```
+
+The Godot-compiled program can run independently of the folder. If you need to restore it to the file editing state, you can use the following command to restore:
+
+```bash
+dotnet run --project make edit en
+```
 
 ### Low-Code-Development
 
-(Future mainstream development method - modify external folders for script/character art/dictionary/music editing)
+(This will be the mainstream development method for ezgal in the future, allowing development by simply modifying the content of folders outside the program.)
 
-Post-compilation, directly edit external folder contents for resource modification.
+After obtaining the binary files, you can also modify script/illustration/dictionary/music and other resources by directly editing the content of folders outside the program.
 
-## Syntax
+### Contributing
 
-For intuitive scriptwriting, dialogue and scene direction are separated. Detailed below:
-Dialogue
+Welcome to use the project. You can refer to [Contributing](./wiki/en/Contributing.md) to contribute source code and make ezgal better.
 
-`Dialogue` Box format:
+## Acknowledgments
 
-```
-[dialogue]
-This demonstrates dialogue box display
-Girl: This is how a character speaks in dialogue boxes
-```
+* The ezgal project is based on the [Godot Engine](https://godotengine.org/).
+* Thanks to [100font](https://www.100font.com/) for providing font resources.
+* The godot-ezgal and ezgal projects were initially supervised by the VYCMa Open Source China Community.
+* The ezgal project is currently maintained by the [Godot Hub Community](https://godothub.com/).
+* Thanks to all individuals who have contributed and designed.
 
-
-`Fullscreen` format:
-
-```
-[fullscreen]
-Fullscreen supports multi-line content
-But no character speaking
-Supports up to 12 simultaneous lines
-[fullscreen]
-Redefine to switch line count early
-```
-
-
-`Options` share formatting with `Dialogue`/`Fullscreen` but store choices for player selection:
-
-```
-[options]
-{script:test3.txt}Jump to Test3
-{jump:loop1}Jump to Loop1
-Continue
-[fullscreen]
-You'll see this after selecting fullscreen
-```
-
-BBCode supported for formatting. Define terms like:
-
-```
-[fullscreen]
-This is a [url=专业名词]professional term[/url]
-```
-
-Selecting terms triggers dictionary popups. Define terms in dictionary folder via `专业名词.txt`.
-
-### Scene Direction
-
-Use `@` to mark jump points:
-
-```
-@loop1
-This creates an infinite loop
-{jump:loop1}
-```
-
-When jumping, it will return to the position of `@循环1`. Except for setting marked positions, all other presentation methods are uniformly managed using curly braces, as shown in the following examples:
-
-```
-{bg:封面.png}#Switch to cover
-{少女:normal.png-1200x650-1.1}Girl: Hello everyone#Set character illustration
-{script:test2.txt, jump:loop1}#Jump to Loop 1 in the test2 script
-```
-
-The parameters within the curly braces are defined as follows:
-
-| Parameter | Description                                                                                                                                                                                          | Example                      |
-| --------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------- |
-| bg        | Sets the background. The background image should be located in the `./image/background/` folder.                                                                                                     | bg:封面.png                    |
-| script    | Jumps to the specified script position.                                                                                                                                                              | script:test3.txt             |
-| jump      | Jumps to the specified **marked position**.                                                                                                                                                          | jump:loop1                   |
-| ef        | Intended for setting special effects, but not yet implemented.                                                                                                                                       |                              |
-| [default] | Used to set character illustrations. [default] should have a corresponding name in the `./image/` folder, with the defined name format as `[image name]-[image height]x[image width]-[scale ratio]`. | girl:normal.png-1200x650-1.1 |
-
-## Acknowledgements
-
-- The ezgal project is based on the [Godot Engine](https://godotengine.org/).
-- Thanks to [100font](https://www.100font.com/) for providing font resources.
-- The godot-ezgal and ezgal projects were initially supervised by the VYCMa Open Source China Community.
-- The ezgal project is currently maintained by the [Godot Hub Community](https://godothub.com/).
-- Thanks to all individuals who have contributed and designed.

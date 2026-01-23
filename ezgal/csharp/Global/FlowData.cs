@@ -8,7 +8,10 @@ public partial class FlowData : Node
 	public const string fullscreen = "全屏";
 	public const string options = "选项";
 	public const string option = "选择";
-	public const string background = "背景";
+	public const string direction = "演出";
+	public const bool IsBuild = false;
+
+	public const string jsonString = null;
 
 
 	public struct FileData{
@@ -18,9 +21,9 @@ public partial class FlowData : Node
 
 	public static List<FileData> flowdata = new List<FileData>();
 
-	public struct DicData{
+	public struct TechData{
 		public string file;
 		public string data;
 	}
-	public static List<DicData> dicdata = new List<DicData>();
+	public static List<TechData> Techdata = new List<TechData>();
 }

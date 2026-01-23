@@ -11,6 +11,16 @@ public partial class End : Control
 	public override void _Ready()
 	{
 		Tools.SetTexture(_endTextureNode, "end_texture");
+          	SetJson();
+	}
+
+	private void SetJson()
+	{
+		string musicPath = ToolsInit.FindInitString("end", "music", "stream");
+		float musicVolumeDb = ToolsInit.FindInitFloat("end", "music", "stream");
+		_musicNode.Stream = Tools.LoadAudio($"./sounds/{musicPath}");
+		_musicNode.VolumeDb = musicVolumeDb;
+		_musicNode.Play();
 	}
 
 	public override void _Process(double delta)

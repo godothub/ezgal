@@ -26,6 +26,13 @@ public partial class MainControl : CanvasLayer
 		_exitNode.Pressed += OnExitPressed;
 	}
 
+	private void SetJson()
+	{
+		Color themeColor = ToolsInit.FindInitColor("main", "theme", "color");
+		Menu.Color = themeColor;
+		_start.AddThemeColorOverride("font_color", themeColor);
+	}
+
 	// 点击任意键开始游戏.
 	public override void _Input(InputEvent @event)
 	{
@@ -49,6 +56,9 @@ public partial class MainControl : CanvasLayer
 	private void InputKey()
 	{
 		tween = GetTree().CreateTween();
+		ShaderMaterial shaderMaterial = (ShaderMaterial)_start.Material;
+		shaderMaterial.SetShaderParameter("min_alpha", 0.0f);
+		shaderMaterial.SetShaderParameter("max_alpha", 0.0f);
 		tween.TweenProperty(Menu, "position", new Vector2(0, 0), 0.6f);
 		ProcessMode = Node.ProcessModeEnum.Disabled;
 		//_start.Hide();

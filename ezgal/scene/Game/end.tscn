@@ -1,8 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://bcta2oa07x3a3"]
+[gd_scene load_steps=3 format=3 uid="uid://bcta2oa07x3a3"]
 
 [ext_resource type="Theme" uid="uid://dps3t0y1voqpb" path="res://theme/game.tres" id="1_tttng"]
 [ext_resource type="Script" uid="uid://8eo6gg62ynjn" path="res://csharp/Game/End.cs" id="2_l52wm"]
-[ext_resource type="AudioStream" uid="uid://bm4afv0vqlbbu" path="res://sounds/思念,交织于世界彼端.mp3" id="3_6i1kq"]
 
 [node name="End" type="Control" node_paths=PackedStringArray("_musicNode", "_endTextureNode")]
 layout_mode = 3
@@ -24,5 +23,4 @@ scale = Vector2(1.5, 1.5)
 centered = false
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_6i1kq")
 autoplay = true
