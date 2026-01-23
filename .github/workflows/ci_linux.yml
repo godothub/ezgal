@@ -1,10 +1,9 @@
 name: CI Linux
 
 on:
-  workflow_dispatch:
-    push:
-      paths-ignore:
-        - '**.md'
+  push:
+    paths-ignore:
+      - '**.md'
       - '**.yml'
       - '!**/linux_ci.yml'
       - '**.csproj'
