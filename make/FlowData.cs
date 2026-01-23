@@ -1,5 +1,7 @@
 public class FlowData
 {
+	public const string exitConst = "@[exit]";
+
 	public static string dialogue;
 	public static string fullscreen;
 	public static string options;

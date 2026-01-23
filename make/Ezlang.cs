@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using System.Text.Json.Serialization;
 
 
 public class Ezlang
@@ -20,50 +21,51 @@ public class Ezlang
 	static List<string> set_option;
 
 	public struct Flow
-        {
-                // 节点类型
-                public string type;
+	{
+		// 节点类型
+		public string type { get; set; }
 
-                // 文本功能集合：
-                // 文本信息(接入History体现)
-                public string text;
-                // 说话对象
-                public string name;
+		// 文本功能集合：
+		// 文本信息(接入History体现)
+		public string text { get; set; }
+		// 说话对象
+		public string name { get; set; }
 
-                // 图片功能集合：
-                // 背景
-                public string background;
-                // 立绘
-                public Anima anima;
-
-                // 选项
-                public List<string> option;
+		// 图片功能集合：
+		// 背景
+		public string background { get; set; }
+		// 立绘
+		public Anima anima { get; set; }
+		
+		// 选项
+		public List<string> option { get; set; }
 		// 维持
-		public int? wait;
+		[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+		public int? wait { get; set; }
 
-                // 跳转功能集合：
-                // 跳转脚本
-                public string script;
-                // 跳转位置
-                public string jump;
-                // 跳转标记
-                public string jptr;
-        }
+		// 跳转功能集合：
+		// 跳转脚本
+		public string script { get; set; }
+		// 跳转位置
+		public string jump { get; set; }
+		// 跳转标记
+		public string jptr { get; set; }	
+	}
 
 	public struct Anima
 	{
 		// 立绘类型
-		public string type;
+		public string type { get; set; }
 		// 立绘名字
-		public string name;
+		public string name { get; set; }
 		// 位置
-		public Vector2 position;
+		public Vector2 position { get; set; }
 		// 缩放
-		public float scale;
+		public float scale { get; set; }
 		// 状态
-		public string state;
+		public string state { get; set; }
 	}
-
+	
 	public struct Vector2
 	{
 		public int X { get; set; }
@@ -80,11 +82,11 @@ public class Ezlang
 	public static List<Flow> ReadFile(string path)
 	{
 		read_file_name = path;
-		flow_line = new Flow{};
+		flow_line = new Flow();
 		using (StreamReader reader = new StreamReader(path))
 		{
 			new_datas = new List<Flow>();
-			while ((line = reader.ReadLine()) != null)
+			while ((line = reader.ReadLine()) != null && line.Trim() != FlowData.exitConst)
 			{
 				line = line.Trim();
 				if  (flow_line.type != FlowData.options)
@@ -174,13 +176,13 @@ public class Ezlang
 							break;
 						}
 						new_datas.Add(
-							new Flow{
+								new Flow{
 								wait = int.Parse(sets[1])
-							}
-						);
+								}
+							     );
 						next_data = true;
 						break;
-					// 背景设置
+						// 背景设置
 					case "bg":
 						if (next_data) {
 							data_flow.type = FlowData.direction;
@@ -192,11 +194,11 @@ public class Ezlang
 							break;
 						}
 						new_datas.Add(
-							new Flow{
+								new Flow{
 								type = FlowData.direction,
 								background = sets[1],
-							}
-						);
+								}
+							     );
 						next_data = true;
 						break;
 					case "ef":
@@ -218,15 +220,15 @@ public class Ezlang
 							break;
 						}
 						new_datas.Add(
-							new Flow{
+								new Flow{
 								type = FlowData.direction,
 								anima = AnalyzeAnima(sets)
-							}
-						);
+								}
+							     );
 						next_data = true;
 						break;
 				}
-			new_datas[new_datas_count] = data_flow;
+				new_datas[new_datas_count] = data_flow;
 			}
 		}
 	}
@@ -234,7 +236,7 @@ public class Ezlang
 	static bool EndLine()
 	{
 		bool flag = false;
-		if (line == null)
+		if (line == null || line.Trim() == FlowData.exitConst)
 		{
 			if (flow_line.type == FlowData.option)
 			{
@@ -250,7 +252,7 @@ public class Ezlang
 	// 分析符号部分
 	static string AnalyzeSymbols(string line, StreamReader reader)
 	{
-		while (line != null && 
+		while (line != null && line.Trim() != FlowData.exitConst && 
 				(line.Trim() == "" || line.StartsWith("'''") || line.StartsWith("#") || line.StartsWith("[") || line.StartsWith("@"))
 		      )
 		{
@@ -274,7 +276,7 @@ public class Ezlang
 			if (line.StartsWith("'''"))
 			{
 				line = reader.ReadLine();
-				while (!line.Contains("'''") && line != null)
+				while (!line.Contains("'''") && line != null && line.Trim() != FlowData.exitConst)
 				{
 					line = reader.ReadLine();
 				}

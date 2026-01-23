@@ -23,6 +23,7 @@ public class Write
 			Commands:
 			build      Build script content into code for the specified language
 			edit       Revert code functionality to script mode for the specified language
+			json	   Translate the corresponding file into JSON format and print it.
 
 			Languages:
 			zh/CN      Chinese
@@ -32,6 +33,10 @@ public class Write
 			Examples:
 			dotnet run --project make build en
 			dotnet run --project make edit ZH
+
+			Usage: dotnet run --project make <COMMAND> [FILE PATH]
+			Commands:
+			json	   Translate the corresponding file into JSON format and print it.
 
 			Notes:
 			This toolchain is currently in TESTING status, please refer to this version's README for accurate syntax.
@@ -78,6 +83,13 @@ public class Write
 		return_file_data += print_init("out");
 		return_file_data = return_file_data.Replace("{\n\t};", "();").Replace("\"", "\\\"").Replace("$34$", "\"");
 		File.WriteAllText(save_file_path, return_file_data);
+	}
+
+	public static void PrintFile(string fileName)
+	{
+		string return_file_data = print_file(fileName);
+		return_file_data = return_file_data.Replace("{\n\t};", "();").Replace("\"", "\\\"").Replace("$34$", "\"");
+		Console.WriteLine(return_file_data.Substring(2).Replace("\n\t\t", "\n"));
 	}
 
 	private static bool IsEmpty<T>(T structure) where T : struct
