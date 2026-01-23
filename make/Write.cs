@@ -111,6 +111,8 @@ public class Write
 				return_file_data += "{\n";
 				break;
 			case "const":
+				return_file_data += $"\tpublic const string exitConst = $34${FlowData.exitConst}$34$;\n";
+				return_file_data += $"\n";
 				return_file_data += $"\tpublic const string dialogue = $34${FlowData.dialogue}$34$;\n";
 				return_file_data += $"\tpublic const string fullscreen = $34${FlowData.fullscreen}$34$;\n";
 				return_file_data += $"\tpublic const string options = $34${FlowData.options}$34$;\n";
