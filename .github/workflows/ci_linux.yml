@@ -2,9 +2,9 @@ name: CI Linux
 
 on:
   workflow_dispatch:
-  push:
-    paths-ignore:
-      - '**.md'
+    push:
+      paths-ignore:
+        - '**.md'
       - '**.yml'
       - '!**/linux_ci.yml'
       - '**.csproj'
@@ -37,25 +37,30 @@ jobs:
   tcc-linux:
     name: Test Runner
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
-        
+          uses: actions/checkout@v4
+
+      - name: Setup .NET
+          uses: actions/setup-dotnet@v4
+          with:
+            dotnet-version: '8.0.0'
+
       - name: Install V language
-        run: |
-          git clone https://github.com/vlang/v
-          cd v
-          make
-          sudo ./v symlink
-          v version
+          run: |
+            git clone https://github.com/vlang/v
+            cd v
+            make
+            sudo ./v symlink
+            v version
 
       - name: Run tests
-        run: |
-          cd ./test
-          if v run main.v; then
+          run: |
+            cd ./test
+            if v run main.v; then
             echo "✅ Tests passed successfully"
-          else
-            echo "❌ Tests failed: $?"
-            exit 1
+            else
+          echo "❌ Tests failed: $?"
+          exit 1
           fi
