@@ -1,0 +1,5 @@
+# 全屏测试
+[全屏]
+happy!happy!ha~ppy!
+@[exit]
+
