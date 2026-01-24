@@ -214,7 +214,7 @@ public partial class Global : Node
 	static List<Flow> ReadFile(string path)
 	{
 		flow_line = new Flow{};
-		using (StreamReader reader = new StreamReader($"./script/{path}"))
+		using (StreamReader reader = new StreamReader($"./script/{path}")){
 			new_datas = new List<Flow>();
                         while ((line = reader.ReadLine()) != null && line.Trim() != FlowData.exitConst)
                         {
@@ -441,4 +441,3 @@ public partial class Global : Node
                 return anima;
         }
 }
-
