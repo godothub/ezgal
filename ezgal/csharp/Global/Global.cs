@@ -215,9 +215,8 @@ public partial class Global : Node
 	{
 		flow_line = new Flow{};
 		using (StreamReader reader = new StreamReader($"./script/{path}"))
-		{
-                        new_datas = new List<Flow>();
-                        while ((line = reader.ReadLine()) != null)
+			new_datas = new List<Flow>();
+                        while ((line = reader.ReadLine()) != null && line.Trim() != FlowData.exitConst)
                         {
                                 line = line.Trim();
                                 if  (flow_line.type != FlowData.options)
@@ -256,12 +255,12 @@ public partial class Global : Node
                                                 }
                                         }
                                 }
-                                else if (flow_line.type == FlowData.options) 
+                                else if (flow_line.type == FlowData.options)
                                 {
                                         set_option.Add(line);
                                 }
 
-                                if (flow_line.type != FlowData.options) 
+                                if (flow_line.type != FlowData.options)
                                 {
                                         // 处理对话部分
                                         if (line.Contains(":"))
@@ -307,13 +306,13 @@ public partial class Global : Node
                                                         break;
                                                 }
                                                 new_datas.Add(
-                                                        new Flow{
+                                                                new Flow{
                                                                 wait = int.Parse(sets[1])
-                                                        }
-                                                );
+                                                                }
+                                                             );
                                                 next_data = true;
                                                 break;
-                                        // 背景设置
+                                                // 背景设置
                                         case "bg":
                                                 if (next_data) {
                                                         data_flow.type = FlowData.direction;
@@ -325,11 +324,11 @@ public partial class Global : Node
                                                         break;
                                                 }
                                                 new_datas.Add(
-                                                        new Flow{
+                                                                new Flow{
                                                                 type = FlowData.direction,
                                                                 background = sets[1],
-                                                        }
-                                                );
+                                                                }
+                                                             );
                                                 next_data = true;
                                                 break;
                                         case "ef":
@@ -351,15 +350,15 @@ public partial class Global : Node
                                                         break;
                                                 }
                                                 new_datas.Add(
-                                                        new Flow{
+                                                                new Flow{
                                                                 type = FlowData.direction,
                                                                 anima = AnalyzeAnima(sets)
-                                                        }
-                                                );
+                                                                }
+                                                             );
                                                 next_data = true;
                                                 break;
                                 }
-                        new_datas[new_datas_count] = data_flow;
+                                new_datas[new_datas_count] = data_flow;
                         }
                 }
         }
@@ -367,7 +366,7 @@ public partial class Global : Node
         static bool EndLine()
         {
                 bool flag = false;
-                if (line == null)
+                if (line == null || line.Trim() == FlowData.exitConst)
                 {
                         if (flow_line.type == FlowData.option)
                         {
@@ -383,7 +382,7 @@ public partial class Global : Node
         // 分析符号部分
         static string AnalyzeSymbols(string line, StreamReader reader)
         {
-                while (line != null && 
+                while (line != null && line.Trim() != FlowData.exitConst &&
                                 (line.Trim() == "" || line.StartsWith("'''") || line.StartsWith("#") || line.StartsWith("[") || line.StartsWith("@"))
                       )
                 {
@@ -407,7 +406,7 @@ public partial class Global : Node
                         if (line.StartsWith("'''"))
                         {
                                 line = reader.ReadLine();
-                                while (!line.Contains("'''") && line != null)
+                                while (!line.Contains("'''") && line != null && line.Trim() != FlowData.exitConst)
                                 {
                                         line = reader.ReadLine();
                                 }

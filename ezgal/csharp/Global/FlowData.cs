@@ -4,11 +4,13 @@ using System.Collections.Generic;
 
 public partial class FlowData : Node
 {
-	public const string dialogue = "对话框";
-	public const string fullscreen = "全屏";
-	public const string options = "选项";
-	public const string option = "选择";
-	public const string direction = "演出";
+	public const string exitConst = "@[exit]";
+
+	public const string dialogue = "dialogue";
+	public const string fullscreen = "fullscreen";
+	public const string options = "options";
+	public const string option = "option";
+	public const string direction = "direction";
 	public const bool IsBuild = false;
 
 	public const string jsonString = null;

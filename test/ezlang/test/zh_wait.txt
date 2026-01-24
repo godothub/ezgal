@@ -1,0 +1,78 @@
+少女:更换封面时会将在更新对话内容时一并更新
+{bg:封面1.png}少女:比如更换[color=red]封面1[/color]时会与当前对话一并更新
+{bg:封面2.png, wait:0}
+少女:当识别到设置wait时需要先点击更新[color=blue]封面2[/color]以后才能再次点击更新以下对话
+{bg:封面1.png, wait:3}
+少女:wait不为0时需要等待[color=blue]封面1[/color]存在3秒后才会进行更新
+@[exit]
+[
+  {
+    "text": "更换封面时会将在更新对话内容时一并更新",
+    "name": "少女",
+    "background": "封面1.png",
+    "anima": {
+      "position": {
+        "X": 0,
+        "Y": 0
+      },
+      "scale": 0
+    }
+  },
+  {
+    "text": "比如更换[color=red]封面1[/color]时会与当前对话一并更新",
+    "name": "少女",
+    "anima": {
+      "position": {
+        "X": 0,
+        "Y": 0
+      },
+      "scale": 0
+    }
+  },
+  {
+    "type": "演出",
+    "background": "封面2.png",
+    "anima": {
+      "position": {
+        "X": 0,
+        "Y": 0
+      },
+      "scale": 0
+    },
+    "wait": 0
+  },
+  {
+    "text": "当识别到设置wait时需要先点击更新[color=blue]封面2[/color]以后才能再次点击更新以下对话",
+    "name": "少女",
+    "anima": {
+      "position": {
+        "X": 0,
+        "Y": 0
+      },
+      "scale": 0
+    }
+  },
+  {
+    "type": "演出",
+    "background": "封面1.png",
+    "anima": {
+      "position": {
+        "X": 0,
+        "Y": 0
+      },
+      "scale": 0
+    },
+    "wait": 3
+  },
+  {
+    "text": "wait不为0时需要等待[color=blue]封面1[/color]存在3秒后才会进行更新",
+    "name": "少女",
+    "anima": {
+      "position": {
+        "X": 0,
+        "Y": 0
+      },
+      "scale": 0
+    }
+  }
+]
