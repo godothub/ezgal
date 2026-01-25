@@ -16,7 +16,8 @@ public partial class Tools : Node
 	/// </summary> 
 	public static Texture2D LoadImage(string absolutePath)
 	{
-		if (FlowData.IsBuild) {
+		if (FlowData.IsBuild)
+		{
 			return ResourceLoader.Load<Texture2D>(absolutePath);
 		}
 		Image image = new Image();
@@ -41,7 +42,8 @@ public partial class Tools : Node
 	/// </summary>
 	public static AudioStream LoadAudio(string absolutePath)
 	{
-		if (FlowData.IsBuild) {
+		if (FlowData.IsBuild)
+		{
 			return ResourceLoader.Load<AudioStream>(absolutePath);
 		}
 		string extension = System.IO.Path.GetExtension(absolutePath).ToLower();
@@ -147,6 +149,24 @@ public partial class Tools : Node
 
 public partial class ToolsInit : Node
 {
+	public static T FindInitValue<T>(string scene, string node, string key)
+	{
+		string jsonString = FlowData.jsonString;
+		if (!FlowData.IsBuild)
+		{
+			jsonString = System.IO.File.ReadAllText("./script/.init.json");
+		}
+		using JsonDocument doc = JsonDocument.Parse(jsonString);
+		JsonElement rootElement = doc.RootElement;
+		if (!rootElement.TryGetProperty(scene, out JsonElement sceneElement))
+			return default;
+		if (!sceneElement.TryGetProperty(node, out JsonElement nodeElement))
+			return default;
+		if (!nodeElement.TryGetProperty(key, out JsonElement keyElement))
+			return default;
+		return keyElement.Deserialize<T>();
+	}
+
 	public static string FindInitString(string scene, string node, string key)
 	{
 		string jsonString = FlowData.jsonString;
