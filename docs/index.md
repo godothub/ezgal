@@ -2,8 +2,7 @@
 
 基于`Godot Mono`的文字冒险类游戏快速开发框架
 
-![](/example.png)
-
+![](example.png)
 
 ## 框架特性
 
@@ -17,7 +16,6 @@
 | 剧本语言     | 中/英/日三语（支持在`./make/FlowData.cs`定制语言）                                               | cryingn |
 | wiki语言   | 中/英/日三语                                                                            | cryingn |
 
-
 ## 致谢
 
 * ezgal项目基于[Godot Engine](https://godotengine.org)
@@ -25,4 +23,5 @@
 * godot-ezgal、ezgal项目最初由VYCMa开源中国社区监督
 * ezgal项目当前由[Godot Hub社区](https://godothub.com)维护
 * 致谢参与贡献与设计的所有个人
-  
+
+

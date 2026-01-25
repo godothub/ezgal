@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 public class FlowData
 {
 	public const string exitConst = "@[exit]";
@@ -7,6 +9,7 @@ public class FlowData
 	public static string options;
 	public static string option;
 	public static string direction;
+	public static HashSet<string> AnalyzeHash;
 
 	public static string set_language(string lang)
 	{
@@ -36,6 +39,11 @@ public class FlowData
 				return $"Error: not found language: {lang}";
             			break;
 		}
+		AnalyzeHash = new HashSet<string>{
+			$"[{dialogue}]", 
+			$"[{fullscreen}]",
+			$"[{options}]",
+		};
 		return $"[True] Set language: {lang}";
 	}
 

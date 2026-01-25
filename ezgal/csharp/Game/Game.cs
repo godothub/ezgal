@@ -101,6 +101,10 @@ public partial class Game : Control
 		{
 			case FlowData.direction:
 				// 设置背景图片
+				if (data.anima.type != null)
+				{
+					create_anima(data.anima);
+				}
 				SetBackground(data.background);
 				Global.intptr++;
 				//Run();
@@ -117,6 +121,10 @@ public partial class Game : Control
 				if (data.name != null)
 				{
 					BottomScene.SetName(data.name);
+				}
+				else
+				{
+					BottomScene.SetName("");
 				}
 				if (data.anima.type != null)
 				{
