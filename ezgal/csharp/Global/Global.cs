@@ -276,6 +276,7 @@ public partial class Global : Node
                                         new_datas.Add(flow_line);
                                 }
                         }
+			line = null;
                         EndLine();
                 }
                 return new_datas;
@@ -368,11 +369,13 @@ public partial class Global : Node
                 bool flag = false;
                 if (line == null || line.Trim() == FlowData.exitConst)
                 {
-                        if (flow_line.type == FlowData.option)
+                        if (flow_line.type == FlowData.options)
                         {
                                 flow_line.option = set_option;
+				set_option = new List<string>();
                                 new_datas.Add(flow_line);
                                 new_datas.Add(new Flow{});
+				flow_line = new Flow();
                         }
                         flag = true;
                 }
@@ -383,7 +386,7 @@ public partial class Global : Node
         static string AnalyzeSymbols(string line, StreamReader reader)
         {
                 while (line != null && line.Trim() != FlowData.exitConst &&
-                                (line.Trim() == "" || line.StartsWith("'''") || line.StartsWith("#") || line.StartsWith("[") || line.StartsWith("@"))
+                                (line.Trim() == "" || line.StartsWith("'''") || line.StartsWith("#") || FlowData.AnalyzeHash.Contains(line.Trim()) || line.StartsWith("@"))
                       )
                 {
                         // 处理中括号部分
@@ -393,14 +396,12 @@ public partial class Global : Node
                                 {
                                         flow_line.option = set_option;
                                         new_datas.Add(flow_line);
-                                        new_datas.Add(new Flow{});
+                                        new_datas.Add(new Flow());
+					flow_line = new Flow();
                                 }
+                                set_option = new List<string>();
                                 match = Regex.Match(line,  @"\[([^\]]*)\]");
                                 flow_line.type = match.Groups[1].Value;
-                                if (flow_line.type == FlowData.options)
-                                {
-                                        set_option = new List<string>();
-                                }
                         }
                         // 处理块注释
                         if (line.StartsWith("'''"))
@@ -429,7 +430,7 @@ public partial class Global : Node
                 string[] animas = sets[1].Split("-");
                 string[] anima_position = animas[1].Split("x");
                 Anima anima = new Anima{
-                        type = sets[0],
+                        type = sets[0].Trim(),
                         name = animas[0],
                         position = new Vector2(int.Parse(anima_position[0]), int.Parse(anima_position[1])),
                         scale = float.Parse(animas[2]),

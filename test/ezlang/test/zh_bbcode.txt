@@ -1,0 +1,16 @@
+[全屏]
+[color="red"]更[/color]是学校里最温柔、最[color="red"]可爱[/color]的女孩
+@[exit]
+[
+  {
+    "type": "全屏",
+    "text": "[color=\"red\"]更[/color]是学校里最温柔、最[color=\"red\"]可爱[/color]的女孩",
+    "anima": {
+      "position": {
+        "X": 0,
+        "Y": 0
+      },
+      "scale": 0
+    }
+  }
+]

@@ -119,6 +119,11 @@ public class Write
 				return_file_data += $"\tpublic const string option = $34${FlowData.option}$34$;\n";
 				return_file_data += $"\tpublic const string direction = $34${FlowData.direction}$34$;\n";
 				return_file_data += $"\tpublic const bool IsBuild = {isBuild.ToString().ToLower()};\n";
+				return_file_data += "\tpublic static readonly HashSet<string> AnalyzeHash = new HashSet<string>{\n";
+				return_file_data += "\t\t$$34$[{dialogue}]$34$,\n";
+				return_file_data += "\t\t$$34$[{fullscreen}]$34$,\n";
+				return_file_data += "\t\t$$34$[{options}]$34$,\n";
+				return_file_data += "\t};\n";
 				return_file_data += $"\n";
 				if (isBuild)
 				{

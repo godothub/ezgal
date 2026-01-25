@@ -1,0 +1,40 @@
+我男主角最喜欢做的事情之一
+{bg:badend.png, 更:微笑.png-1150x500-0 , wait:0}
+就是对各种美少女说[color="red"]No[/color]
+@[exit]
+[
+  {
+    "text": "我男主角最喜欢做的事情之一",
+    "anima": {
+      "position": {
+        "X": 0,
+        "Y": 0
+      },
+      "scale": 0
+    }
+  },
+  {
+    "type": "演出",
+    "background": "badend.png",
+    "anima": {
+      "type": "更",
+      "name": "微笑.png",
+      "position": {
+        "X": 1150,
+        "Y": 500
+      },
+      "scale": 0
+    },
+    "wait": 0
+  },
+  {
+    "text": "就是对各种美少女说[color=\"red\"]No[/color]",
+    "anima": {
+      "position": {
+        "X": 0,
+        "Y": 0
+      },
+      "scale": 0
+    }
+  }
+]
