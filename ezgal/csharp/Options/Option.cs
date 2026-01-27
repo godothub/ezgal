@@ -29,6 +29,6 @@ public partial class Option : Button
 		}
 		Global.intptr++;
 		_optionsScene.Hide();
-		_gameScene.Run();
+		_ = _gameScene.Run();
 	}
 }

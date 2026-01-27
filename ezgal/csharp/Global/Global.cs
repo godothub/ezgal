@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 
 
 public partial class Global : Node
@@ -77,14 +78,14 @@ public partial class Global : Node
 		public string state;
 	}
 
-	public override void _Ready()
+	public override async void _Ready()
 	{
 		// window size是否会改变
 		window_width = GetWindow().Size.X;
 		window_height = GetWindow().Size.Y;
 		string startPath = ToolsInit.FindInitString("game", "script", "start");
 
-		datas = RunFile(startPath);
+		datas = await RunFile(startPath);
 	}
 
 	/*
@@ -118,13 +119,13 @@ public partial class Global : Node
 	}
 
 	// 读取data并转义为json格式.
-	public static List<Flow> RunFile(string path)
+	public static async Task<List<Flow>> RunFile(string path)
 	{
 		if (FlowData.flowdata.Count == 0)
 		{
 			try {
 				read_file_name = path;
-				return ReadFile(path);
+				return await ReadFile(path);
 			}
 			catch
 			{
@@ -211,12 +212,12 @@ public partial class Global : Node
 	}
 
 	// 读取文本文档转义为json格式.
-	static List<Flow> ReadFile(string path)
+	static async Task<List<Flow>> ReadFile(string path)
 	{
 		flow_line = new Flow{};
 		using (StreamReader reader = new StreamReader($"./script/{path}")){
 			new_datas = new List<Flow>();
-                        while ((line = reader.ReadLine()) != null && line.Trim() != FlowData.exitConst)
+                        while ((line = await reader.ReadLineAsync()) != null && line.Trim() != FlowData.exitConst)
                         {
                                 line = line.Trim();
                                 if  (flow_line.type != FlowData.options)
@@ -224,7 +225,7 @@ public partial class Global : Node
                                         flow_line = new Flow{};
                                 }
                                 // 处理空行与中括号部分
-                                line = AnalyzeSymbols(line, reader);
+                                line = await AnalyzeSymbolsAsync(line, reader);
                                 if (EndLine())
                                 {
                                         return new_datas;
@@ -234,7 +235,7 @@ public partial class Global : Node
                                 if (line.StartsWith("{"))
                                 {
                                         while (!line.Contains("}")) {
-                                                line += reader.ReadLine();
+                                                line += await reader.ReadLineAsync();
                                         }
 
                                         if (flow_line.type == FlowData.options)
@@ -248,7 +249,7 @@ public partial class Global : Node
                                         line = line.Split("}")[1].Trim();
                                         if (line == "")
                                         {
-                                                line = AnalyzeSymbols(line, reader);
+                                                line = await AnalyzeSymbolsAsync(line, reader);
                                                 if (EndLine())
                                                 {
                                                         return new_datas;
@@ -383,7 +384,7 @@ public partial class Global : Node
         }
 
         // 分析符号部分
-        static string AnalyzeSymbols(string line, StreamReader reader)
+        static async Task<string> AnalyzeSymbolsAsync(string line, StreamReader reader)
         {
                 while (line != null && line.Trim() != FlowData.exitConst &&
                                 (line.Trim() == "" || line.StartsWith("'''") || line.StartsWith("#") || FlowData.AnalyzeHash.Contains(line.Trim()) || line.StartsWith("@"))
@@ -406,10 +407,10 @@ public partial class Global : Node
                         // 处理块注释
                         if (line.StartsWith("'''"))
                         {
-                                line = reader.ReadLine();
+                                line = await reader.ReadLineAsync();
                                 while (!line.Contains("'''") && line != null && line.Trim() != FlowData.exitConst)
                                 {
-                                        line = reader.ReadLine();
+                                        line = await reader.ReadLineAsync();
                                 }
                         }
                         // 设置跳转标志
@@ -419,7 +420,7 @@ public partial class Global : Node
                                 //print(flow_line);
                         }
                         // 获取新line
-                        line = reader.ReadLine();
+                        line = await reader.ReadLineAsync();
                 }
                 return line;
         }

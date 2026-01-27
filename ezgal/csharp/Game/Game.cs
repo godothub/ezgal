@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 public partial class Game : Control
 {
@@ -23,18 +24,19 @@ public partial class Game : Control
 	// 立绘状态控制字典
 	private Dictionary<string, Sprite2D> _dicNode;
 
-	public override void _Ready()
+	public override async void _Ready()
 	{
 		_dicNode = new Dictionary<string, Sprite2D>();
 		Datas = new List<Global.Flow>();
 		Datas.AddRange(Global.datas);
-		Run();
+		await Run();
 	}
 
 	// 设置背景图片
 	private void SetBackground(string path)
 	{
-		if (path == null) {
+		if (path == null)
+		{
 			return;
 		}
 		var texture = Tools.LoadImage($"./image/background/{path}") as Texture2D;
@@ -66,7 +68,7 @@ public partial class Game : Control
 	}
 
 	// 获取字段进行统一管理
-	public void Run()
+	public async Task Run()
 	{
 		bool is_first = true;
 		if (Datas.Count <= Global.intptr)
@@ -170,21 +172,21 @@ public partial class Game : Control
 		// 跳转
 		if (data.script != null || data.jump != null)
 		{
-			new_script(data.script, data.jump);
+			await new_script(data.script, data.jump);
 		}
 	}
 
 	// 跳转到新的脚本
-	public void new_script(string file_name, string jump_ptr)
+	public async Task new_script(string file_name, string jump_ptr)
 	{
 		// no file_name.
 		if (file_name == null)
 		{
 			file_name = Global.read_file_name;
 		}
-		
+
 		Datas = Datas.GetRange(0, Global.intptr);
-		List<Global.Flow> new_datas = Global.RunFile(file_name);
+		List<Global.Flow> new_datas = await Global.RunFile(file_name);
 
 		if (jump_ptr == null)
 		{
@@ -212,7 +214,7 @@ public partial class Game : Control
 				}
 			}
 		}
-		Run();
+		await Run();
 	}
 
 	// 创建立绘节点
@@ -250,14 +252,14 @@ public partial class Game : Control
 	}
 
 	// 对话框信号
-	public void _on_bottom_start_game()
+	public async void _on_bottom_start_game()
 	{
-		Run();
+		await Run();
 	}
 
 	// 全屏信号
-	public void _on_font_start_game()
+	public async void _on_font_start_game()
 	{
-		Run();
+		await Run();
 	}
 }
