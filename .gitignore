@@ -24,8 +24,22 @@ ezgal/.mono/
 ezgal/data_*/
 ezgal/mono_crash.*.json
 
-# Special file ignores
+# note file ignores
 .obsidian/
+vx_notebook/
+vx_attachments/
+vx_recycle_bin/
+vx.json
+**/vx.json
+.klevernotesFolder.metadata.json
+**/.klevernotesFolder.metadata.json
+
+# Special file ignores
 ezgal/.idea/
 ezgal/.vscode/
 ezgal/libaries/
+
+# API-KEY
+docs/private/apikey
+docs/private/apiurl
+

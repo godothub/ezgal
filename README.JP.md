@@ -1,21 +1,18 @@
 <div align="center" style="display:grid;place-items:center;">
 	<p>
 	    <a href="https://gitee.com/cryingn/ezgal" target="_blank"><img width="180" src="./ezgal/image/icon.png" alt="ezgal logo"></a>
-	<h1>ezgal</h1>
-	</p>
-    <div style="display: flex; gap: 10px;">
-		<img src="https://gitcode.com/godothub/ezgal/star/badge.svg?style=flat-square">
-		<img src="https://img.shields.io/github/stars/Godothub/ezgal.svg">
-	</div>
+        <h1>ezgal</h1>
+    <p>
+    <img src="https://img.shields.io/badge/License-MIT--License-blue.svg?style=flat-square&logo=opensourceinitiative&logoSize=14" alt="License" height="20">
+    <img src="https://img.shields.io/github/stars/godothub/ezgal?style=flat-square&logo=github&color=green&logoSize=14" alt="License" height="20">
+	<img src="https://gitcode.com/godothub/ezgal/star/badge.svg?style=flat-square">
 </div>
-
-
 
 [English](./README.md)|[中文](./README.ZH.md)|日本語
 
 これはgodot.monoに基づいてgalgameの開発を容易にするための一連のフレームワークです。
 
-<img src="./docs/public/example.png" />
+![](./docs/public/example.png)
 
 ## 説明
 

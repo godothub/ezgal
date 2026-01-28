@@ -1,23 +1,22 @@
 <div align="center" style="display:grid;place-items:center;">
-        <p>
-            <a href="https://gitee.com/cryingn/ezgal" target="_blank"><img width="180" src="./ezgal/image/icon.png" alt="ezgal logo"></a>
-	        <h1>ezgal</h1>
-        </p>
-    <div style="display: flex; gap: 10px;">
-		<img src="https://gitcode.com/godothub/ezgal/star/badge.svg?style=flat-square">
-		<img src="https://img.shields.io/github/stars/Godothub/ezgal.svg">
-	</div>
+	<p>
+	    <a href="https://gitee.com/cryingn/ezgal" target="_blank"><img width="180" src="./ezgal/image/icon.png" alt="ezgal logo"></a>
+        <h1>ezgal</h1>
+    <p>
+    <img src="https://img.shields.io/badge/License-MIT--License-blue.svg?style=flat-square&logo=opensourceinitiative&logoSize=14" alt="License" height="20">
+    <img src="https://img.shields.io/github/stars/godothub/ezgal?style=flat-square&logo=github&color=green&logoSize=14" alt="License" height="20">
+	<img src="https://gitcode.com/godothub/ezgal/star/badge.svg?style=flat-square">
 </div>
 
 [English](./README.md)|中文|[日本語](./README.JP.md)
 
-这是基于godot.mono用于文字冒险类游戏的快速开发框架.
+基于Godot Mono的文字冒险类游戏开发模板.
 
 ![](./docs/public/example.png)
 
 ## 描述
 
-我们在2023年11月初步实现了godot3的**godot-ezgal**框架, 但是因为扩展性问题放弃继续维护, 现在对框架进行重写, 以下是当前新**ezgal**框架的特性:
+我们在2023年11月初步实现了godot3的**godot-ezgal**框架, 但是因为扩展问题放弃继续维护, 现在重新构建一套便于维护新增的文档, 以下是新**ezgal**框架的特性:
 
 | 描述       | ezgal                                                                              | 说明人     |
 | -------- | ---------------------------------------------------------------------------------- | ------- |
@@ -33,7 +32,7 @@
 
 ### 使用说明
 
-我们整理了便于了解项目与使用开发的文档，您可以在wiki中找到相应的说明文档，我们一般从[目录](./wiki/cn/目录.md)开始.
+我们整理了便于了解项目与使用开发的文档，您可以在wiki中找到相应的说明文档，我们一般从[目录](./docs/zh_CN/index.md)开始.
 
 ### 深度嵌入
 
