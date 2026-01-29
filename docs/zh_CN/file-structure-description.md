@@ -1,5 +1,7 @@
 # 文件结构说明
 
+[返回目录](./index.md)
+
 ## 主结构
 
 文件结构是项目最核心的概念，快速了解项目的文件构成有利于判断应该如何处理自己的需求，以下是主结构说明：
@@ -7,20 +9,17 @@
 ```
 .  
 ├── ezgal
-│   └── ...
-├── image
-│   └── ...
+│   └── ...
 ├── LICENSE
 ├── make
-│   └── ...
-├── README_CN.md  
-├── README_JP.md  
-├── README.md  
-└── wiki
+│   └── ...
+├── test
+│   └── ...
+└── docs
 	└── ...
 ```
 
-### ezgal
+### ezgal项目
 
 `ezgal`文件夹存放godot的项目文件，我们可以将文件夹内容直接导入godot中作为新项目进行开发，我们将在[框架结构](#框架结构)中详细介绍内部结构
 
@@ -28,21 +27,13 @@
 
 `LICENSE`为开源协议说明，项目遵循MIT开源协议，支持商业使用、修改、分发、使用
 
-### README.ZH.md
+### make构建工具
 
-中文说明文档
+`make`文件夹存放基于csharp的make构建工具，是ezlang的主要构成部分，用于控制ezgal项目构建、编辑模式，可以在[工具集](./tools.md#make构建工具)进一步了解使用方式.
 
-### README.JP.md
+### docs目录
 
-日文说明文档
-
-### README.md
-
-英文说明文档
-
-### 文档目录
-
-`docs`文件夹用于存放各语言的项目说明目录
+`docs`文件夹用于存放各语言的项目说明目录.
 
 
 ## 框架结构
@@ -52,31 +43,33 @@
 ```
 .
 ├── script
-│   ├── .init.json
-│   ├── start.txt
-│   └── ...
+│   ├── .init.json
+│   ├── start.txt
+│   └── ...
 ├── dictionary
-│   └── ...
+│   └── ...
 ├── image
-│   └── background
-│   │   └── ...
-│   ├── start_texture.png/start_texture.jpg
-│   ├── end_texture.png/end_texture.jpg
-│   └── ...
+│   └── background
+│   │   └── ...
+│   ├── start_texture.png/start_texture.jpg
+│   ├── end_texture.png/end_texture.jpg
+│   └── ...
 ├── sounds
-│   └── ...
-├── code
-│   └── ...
+│   └── ...
+├── csharp
+│   └── ...
+├── gdscript
+│   └── ...
 ├── font
-│   └── ...
+│   └── ...
 ├── scene
-│   └── ...
+│   └── ...
 ├── shader
-│   └── ...
+│   └── ...
 ├── theme
-│   ├── game.tres
-│   ├── theme.tres
-│   └── UI.tres
+│   ├── game.tres
+│   ├── theme.tres
+│   └── UI.tres
 ├── project.godot  
 └── ...
 ```
@@ -87,19 +80,19 @@
 ```
 .
 ├── script
-│   ├── .init.json
-│   ├── start.txt
-│   └── ...
+│   ├── .init.json
+│   ├── start.txt
+│   └── ...
 ├── dictionary
-│   └── ...
+│   └── ...
 ├── image
-│   └── background
-│   │   └── ...
-│   ├── start_texture.png/start_texture.jpg
-│   ├── end_texture.png/end_texture.jpg
-│   └── ...
+│   └── background
+│   │   └── ...
+│   ├── start_texture.png/start_texture.jpg
+│   ├── end_texture.png/end_texture.jpg
+│   └── ...
 ├── sounds
-│   └── ...
+│   └── ...
 └── ezgal.exe
 ```
 
@@ -141,9 +134,13 @@
 
 用于存放音乐文件.
 
-### code
+### csharp
 
 用于存放C#代码.
+
+### gdscript
+
+用于存放gdscript代码.
 
 ### font
 

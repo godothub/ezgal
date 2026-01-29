@@ -13,7 +13,6 @@ def build(AI_type):
                 tools.Build_en_EN(headers, file_name, "api")
             print(f"{file_name}: 已翻译")
 
-
 def main():
     argv = sys.argv
     try:
@@ -21,9 +20,6 @@ def main():
         build(AI_type)
     except Exception as ex:
         print(ex)
-
-    
-
 
 main()
 

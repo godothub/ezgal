@@ -1,5 +1,7 @@
 # 工具集
 
+[返回目录](./index.md)
+
 工具集是ezgal开发中可以大幅优化开发流程的辅助工具，参与贡献不一定需要了解工具集的使用方式，但是我们强烈建议在贡献前先尝试了解工具集应该如何使用。
 
 ## make构建工具
@@ -31,6 +33,22 @@ dotnet run --project make <COMMAND> [文件路径]
 
 本工具链目前处于测试阶段，请参考当前版本的 README 文件获取准确语法。
 
+```
+
+### 构建模式
+
+构建模式会将用户编辑的台本硬写入`./ezgal/csharp/Global/FlowData.cs`文件，便于深度开发中打包导出文件，优化运行效率，以中文导出为例：
+
+```bash
+dotnet run --project make build zh
+```
+
+### 编辑模式
+
+编辑模式中Ezgal会读取用户的编辑台本，以中文的编辑模式为例：
+
+```bash
+dotnet run --project make edit zh
 ```
 
 ## ci测试

@@ -58,9 +58,9 @@ def Build_en_EN(headers, file_name, AI_type):
         data = f.read().strip()
 
     question = "请将以下markdown文件翻译为英文，"
-    question += "注意格式一致，文件路径不做改动，"
-    question += "翻译文件以外不要进行任何说明，"
-    question += "其中代码关键词对照关系为"
+    question += "注意保持markdown格式一致，文件路径不改动，"
+    question += "翻译文件以外不进行任何说明，"
+    question += "其中代码部分对照关系为"
     question += f"{comparison_table.zh_to_en},"
     question += "文件如下:\n" + data
 

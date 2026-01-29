@@ -38,6 +38,7 @@ vx.json
 ezgal/.idea/
 ezgal/.vscode/
 ezgal/libaries/
+docs/private/server/Qwen2.5-1.5B-Instruct/
 
 # API-KEY
 docs/private/apikey

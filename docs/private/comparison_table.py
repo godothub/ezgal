@@ -3,5 +3,8 @@ zh_to_en = {
 	"全屏" : "fullscreen",
 	"选项" : "options",
 	"选择" : "option",
-	"演出" : "direction" 
+	"演出" : "direction",
+    "https://atomgit.com/godothub" : "https://github.com/godothub",
+    "zh" : "en",
+    "CN" : "EN"
 }

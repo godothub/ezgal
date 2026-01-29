@@ -1,8 +1,13 @@
 # 低代码开发
 
+[返回目录](./index.md)
+
 ## 支持
 
-由于android程序使用apk工具安装使用，当前**低代码开发**暂不支持android端.
+> 由于android程序使用apk工具安装使用，原则上可以导出apk版本，但目前不便于打包分发。
+> 故描述为当前**低代码开发**暂不支持android端。
+
+Ezgal支持windows与linux端，mac端可以自行通过godot导出开发模板。
 
 ## 开发
 
@@ -10,7 +15,7 @@
 
 ### 下载
 
-(当前暂未提供下载资源， 预计v0.1.0版本提供官方release文件).
+你可以直接获取对应系统的[发行版](https://atomgit.com/godothub/ezgal/releases).
 
 ### 使用
 
@@ -20,6 +25,11 @@
 
 ezgal定义了固定的解释语言，针对**低代码开发**的接口均以文本形式进行管理，未来初步规划开发ezgal编辑器便于开发设置等流程.
 
+### 案例
+
+以下是一些基于Ezgal的游戏开发案例：
+
+- [The_Guilty_Secret](https://atomgit.com/cryingn/The_Guilty_Secret)
 
 ## 分发
 
